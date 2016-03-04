@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+
+	<package name="struts2" namespace="/User" extends="struts-default">
+
+		<action name="login" class="LoginAction">
+
+			<result name="success">/jsp/store/</result>
+
+			<result name="error">/jsp/store/userLoginError.jsp</result>
+			
+			<result name="input">/jsp/store/userLogin.jsp</result>
+
+		</action>
+		
+		<action name="logout" class="LogoutAction">
+			
+			<result name="success">/jsp/store/userLogin.jsp</result>
+		
+		</action>
+
+	</package>
+	
+	
+	<package name="struts2" namespace="/SystemManager" extends="struts-default">
+	
+		<action name="logout" class="LogoutAction">
+			
+			<result name="success">/jsp/store/storeOp/.jsp</result>
+		
+		</action>
+	
+	</package>
+	
+	
+	<package name="struts2" namespace="/HeadAttendant" extends="struts-default">
+	
+	</package>
+	
+	
+	<package name="struts2" namespace="/BranchStoreAttendent" extends="struts-default">
+	
+	</package>
+	
+	
+	<package name="struts2" namespace="/StoreManager" extends="struts-default">
+	
+	</package>
+	
+	
+	<package name="struts2" namespace="/Member" extends="struts-default">
+	
+	</package>
+	
+
+</struts>
+

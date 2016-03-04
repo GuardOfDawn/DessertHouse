@@ -2,11 +2,14 @@ package memberManage;
 
 import java.util.ArrayList;
 
+import javax.ejb.Stateless;
+
 import models.Bill;
 import models.Member;
-import service.MemberManageService;
+import remoteService.MemberManageService;
 import verification.VerifyService;
 
+@Stateless
 public class MemberManageController implements MemberManageService{
 	
 	private static MemberManageController memberManageController = new MemberManageController();
@@ -41,7 +44,7 @@ public class MemberManageController implements MemberManageService{
 		return verify.sendVerifyCode(phoneNumber);
 	}
 
-	public String register(String memberName, String memberTel, String password) {
+	public Member register(String memberName, String memberTel, String password) {
 		return addMember.register(memberName, memberTel, password);
 	}
 

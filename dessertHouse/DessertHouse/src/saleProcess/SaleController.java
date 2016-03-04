@@ -2,12 +2,16 @@ package saleProcess;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
+
 import models.Bill;
 import models.Member;
 import models.Order;
 import models.Product;
 import models.Strategy;
+import service.SaleProcessService;
 
+@Service
 public class SaleController implements SaleProcessService{
 
 	private DealOrderSale dealOrderSale;

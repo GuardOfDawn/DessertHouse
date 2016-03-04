@@ -23,10 +23,10 @@ public class RetrieveStore {
 	
 	public Store getStoreInfo(String storeId){
 		String[] columns = {"storeId"};
-		String[] values = new String[0];
+		String[] values = new String[1];
 		values[0] = storeId;
 		ArrayList<Store> s = storeDao.findStore(columns, values);
-		if(s!=null&&s.size()>0){
+		if(s!=null&&s.size()==1){
 			return s.get(0);
 		}
 		else{

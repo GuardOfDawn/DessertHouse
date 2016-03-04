@@ -2,12 +2,12 @@ package dao;
 
 import java.util.ArrayList;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 import models.Member;
 import models.Recharge;
 
-@Remote
+@Local
 public interface MemberDao {
 	
 	public Member find(String memberId);

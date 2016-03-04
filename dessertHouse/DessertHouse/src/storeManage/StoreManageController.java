@@ -2,9 +2,12 @@ package storeManage;
 
 import java.util.ArrayList;
 
-import models.Store;
-import service.StoreManageService;
+import javax.ejb.Stateless;
 
+import models.Store;
+import remoteService.StoreManageService;
+
+@Stateless
 public class StoreManageController implements StoreManageService{
 
 	private static StoreManageController storeManageController = new StoreManageController();
@@ -38,8 +41,8 @@ public class StoreManageController implements StoreManageService{
 		}
 	}
 
-	public boolean modifyStore(String storeId,Store store){
-		return modifyStore.modifyStore(storeId, store);
+	public boolean modifyStore(Store store){
+		return modifyStore.modifyStore(store);
 	}
 
 	public ArrayList<Store> getAllStore() {

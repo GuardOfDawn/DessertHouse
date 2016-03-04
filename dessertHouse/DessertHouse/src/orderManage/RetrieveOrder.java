@@ -27,10 +27,6 @@ public class RetrieveOrder {
 		values[0] = memberId;
 		values[1] = String.valueOf(orderState);
 		ArrayList<Order> orderList = orderDao.findOrder(columns, values);
-		columns = new String[]{"orderId"};
-		for(Order o:orderList){
-			o.setItemList(orderDao.findOrderDetail(columns, new String[]{o.getOrderId()}));
-		}
 		return orderList;
 	}
 }

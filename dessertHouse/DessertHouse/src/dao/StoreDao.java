@@ -2,14 +2,14 @@ package dao;
 
 import java.util.ArrayList;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 import models.Store;
 
-@Remote
+@Local
 public interface StoreDao {
 
-	public boolean insertStore(String[] columns,String[] values);
+	public boolean saveStore(Store store);
 	
 	public boolean removeStore(String[] columns,String[] values);
 	
@@ -17,6 +17,6 @@ public interface StoreDao {
 	
 	public ArrayList<Store> findAllStore();
 	
-	public boolean modifyStore(String storeId,String[] columns,String[] values);
+	public boolean updateStore(Store store);
 	
 }

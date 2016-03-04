@@ -1,31 +1,53 @@
 package models;
 
-public class BillDetail {
+import java.io.Serializable;
 
-	private String billId;
-	private String productId;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="billdetail")
+public class BillDetail implements Serializable{
+
+	private Bill bill;
+	private Product product;
 	private double productPrice;
 	private int productCount;
 	
+	@Id
+	@ManyToOne(cascade=CascadeType.ALL, optional=false)
+	@JoinColumn(name="billId")
+	public Bill getBill() {
+		return bill;
+	}
+	public void setBill(Bill bill) {
+		this.bill = bill;
+	}
 	
-	public String getBillId() {
-		return billId;
+	@ManyToOne(cascade=CascadeType.ALL, optional=false)
+	@JoinColumn(name="productId")
+	public Product getProduct() {
+		return product;
 	}
-	public void setBillId(String billId) {
-		this.billId = billId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
-	public String getProductId() {
-		return productId;
-	}
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
+	
+	@Column
 	public double getProductPrice() {
 		return productPrice;
 	}
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
 	}
+	
+	@Column
 	public int getProductCount() {
 		return productCount;
 	}

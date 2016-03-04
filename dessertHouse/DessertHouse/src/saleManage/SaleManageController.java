@@ -1,11 +1,14 @@
 package saleManage;
 
+import javax.ejb.EJB;
+
 import models.Bill;
 import models.Member;
 import models.Product;
 import models.Strategy;
-import service.SaleManageService;
+import remoteService.SaleManageService;
 
+@EJB
 public class SaleManageController implements SaleManageService{
 
 	private static SaleManageController saleManageController = new SaleManageController();

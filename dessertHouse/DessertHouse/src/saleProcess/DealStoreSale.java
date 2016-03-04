@@ -7,7 +7,7 @@ import models.BillDetail;
 import models.Member;
 import models.Product;
 import models.Strategy;
-import service.SaleManageService;
+import remoteService.SaleManageService;
 import utility.IDProducer;
 
 public class DealStoreSale {
@@ -25,7 +25,7 @@ public class DealStoreSale {
 		bill.setBillId(IDProducer.getInstance().produceBillId());
 		Member m = saleService.getMemberInfo(memberId);
 		if(m!=null){
-			bill.setBillMember(m.getMemberId());
+			bill.setBillMember(m);
 			return m;
 		}
 		else{
@@ -36,8 +36,7 @@ public class DealStoreSale {
 	public Product addProduct(String productId,int count){
 		Product p = saleService.getProductInfo(productId);
 		BillDetail item = new BillDetail();
-		item.setBillId(bill.getBillId());
-		item.setProductId(productId);
+		item.setProduct(p);
 		item.setProductPrice(p.getSellPrice());
 		item.setProductCount(count);
 		bill.getItemList().add(item);
@@ -55,7 +54,7 @@ public class DealStoreSale {
 	
 	public Strategy getSaleStrategy(){
 		//TODO 获得优惠策略
-		Strategy strategy = saleService.getSaleStrategy(bill.getBillMember(), bill.getBillCost());
+		Strategy strategy = saleService.getSaleStrategy(bill.getBillMember().getMemberId(), bill.getBillCost());
 		//bill.setCostAfterDiscount();
 		return null;
 	}
@@ -78,6 +77,9 @@ public class DealStoreSale {
 	}
 	
 	public void saveBill(){
+		for(BillDetail item:bill.getItemList()){
+			item.setBill(bill);
+		}
 		saleService.saveBill(bill);
 		bill = null;
 	}

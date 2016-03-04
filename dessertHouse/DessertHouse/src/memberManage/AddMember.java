@@ -3,6 +3,7 @@ package memberManage;
 import javax.ejb.EJB;
 
 import dao.MemberDao;
+import models.Member;
 
 public class AddMember {
 	
@@ -18,13 +19,9 @@ public class AddMember {
 
 	@EJB MemberDao memberDao;
 	
-	public String register(String memberName, String tel, String password) {
-		String[] columns = {"memberName","memberTel","loginPassword"};
-		String[] values = new String[3];
-		values[0] = memberName;
-		values[1] = tel;
-		values[2] = password;
-		return memberDao.addMember(columns, values);
+	public Member register(String memberName, String tel, String password) {
+		
+		return null;
 	}
 
 	public void setPayPassword(String memberId, String payPassword){

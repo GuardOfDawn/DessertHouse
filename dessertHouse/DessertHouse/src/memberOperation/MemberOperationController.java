@@ -2,9 +2,16 @@ package memberOperation;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
+
 import models.Bill;
 import models.Member;
+import service.MemberActivateService;
+import service.MemberInfoService;
+import service.MemberLoginService;
+import service.MemberRegisterService;
 
+@Service
 public class MemberOperationController implements MemberRegisterService
 		,MemberLoginService,MemberActivateService,MemberInfoService{
 	
@@ -70,7 +77,7 @@ public class MemberOperationController implements MemberRegisterService
 		return memberRegister.checkVerifyCode(verifyCode);
 	}
 
-	public String register(String memberName, String password) {
+	public Member register(String memberName, String password) {
 		return memberRegister.register(memberName, password);
 	}
 

@@ -3,7 +3,7 @@ package orderManage;
 import java.util.ArrayList;
 
 import models.Order;
-import service.OrderManageService;
+import remoteService.OrderManageService;
 import utility.IDProducer;
 
 public class OrderManageController implements OrderManageService{

@@ -2,43 +2,62 @@ package salespersonOperation;
 
 import java.util.ArrayList;
 
-import models.Salesperson;
+import javax.ejb.EJB;
 
+import org.springframework.stereotype.Service;
+
+import models.Salesperson;
+import models.Store;
+import remoteService.SalespersonManageService;
+import remoteService.StoreManageService;
+import service.SalespersonOpService;
+
+@Service
 public class SalespersonOperation implements SalespersonOpService{
 
+	@EJB SalespersonManageService salespersonManage;
+	@EJB StoreManageService storeManage;
+	
 	public SalespersonOperation(){
 		
 	}
 
 	public boolean addSalesperson(Salesperson salesperson) {
-		// TODO Auto-generated method stub
-		return false;
+		return salespersonManage.addSalesperson(salesperson);
 	}
 
 	public boolean deleteSalesperson(String salespersonId) {
-		// TODO Auto-generated method stub
-		return false;
+		return salespersonManage.deleteSalesperson(salespersonId);
 	}
 
 	public boolean modifySalesperson(String salespersonId, Salesperson salesperson) {
-		// TODO Auto-generated method stub
-		return false;
+		Salesperson person = salespersonManage.getSalespersonInfo(salespersonId);
+		if(person!=null){
+			person.setSalespersonName(salesperson.getSalespersonName());
+			person.setSalespersonAge(salesperson.getSalespersonAge());
+			person.setSalespersonLevel(salesperson.getSalespersonLevel());
+			if(!person.getStore().getStoreId().equals(salesperson.getStore().getStoreId())){
+				Store store = storeManage.getStoreInfo(salesperson.getStore().getStoreId());
+				person.setStore(store);
+			}
+			return salespersonManage.modifySalesperson(person);
+		}
+		else{
+			return false;
+		}
 	}
 
 	public Salesperson getSalespersonInfo(String salespersonId) {
-		// TODO Auto-generated method stub
-		return null;
+		return salespersonManage.getSalespersonInfo(salespersonId);
 	}
 
 	@Override
 	public ArrayList<Salesperson> getAllSalesperson(String salespersonId) {
-		// TODO Auto-generated method stub
-		return null;
+		return salespersonManage.getAllSalesperson();
 	}
 
 	public ArrayList<Salesperson> retrieveSalesperson(String storeId) {
-		// TODO Auto-generated method stub
-		return null;
+		return salespersonManage.retrieveSalesperson(storeId);
 	}
 	
 }

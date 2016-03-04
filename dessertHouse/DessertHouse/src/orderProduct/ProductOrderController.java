@@ -2,10 +2,15 @@ package orderProduct;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
+
 import models.OrderDetail;
 import models.Product;
 import models.Store;
+import service.ProductOrderService;
+import service.ProductPurchaseService;
 
+@Service
 public class ProductOrderController 
 		implements ProductOrderService,ProductPurchaseService{
 
@@ -19,6 +24,10 @@ public class ProductOrderController
 	
 	public ArrayList<Product> searchProducts(String keywords) {
 		return searchProduct.searchProducts(keywords);
+	}
+
+	public ArrayList<Product> getProductForStore(String storeId){
+		return searchProduct.getProductForStore(storeId);
 	}
 
 	public Product getProduct(String productId) {

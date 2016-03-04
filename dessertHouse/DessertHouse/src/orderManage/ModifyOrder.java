@@ -1,8 +1,11 @@
 package orderManage;
 
+import java.util.ArrayList;
+
 import javax.ejb.EJB;
 
 import dao.OrderDao;
+import models.Order;
 
 public class ModifyOrder {
 
@@ -19,8 +22,14 @@ public class ModifyOrder {
 	@EJB OrderDao orderDao;
 	
 	public void modifyOrderState(String orderId,int orderState){
-		String column = "orderState";
-		String value = String.valueOf(orderState);
-		orderDao.modifyOrder(orderId, column, value);
+		String[] columns = {"orderId"};
+		String[] values = new String[1];
+		values[0] = orderId;
+		ArrayList<Order> list = orderDao.findOrder(columns, values);
+		if(list!=null&&list.size()==1){
+			Order order = list.get(0);
+			order.setOrderState(orderState);
+			orderDao.saveOrder(order);
+		}
 	}
 }

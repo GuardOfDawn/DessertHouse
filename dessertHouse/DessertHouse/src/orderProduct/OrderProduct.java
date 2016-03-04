@@ -3,10 +3,19 @@ package orderProduct;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import javax.ejb.EJB;
+
+import models.Member;
 import models.Order;
 import models.OrderDetail;
+import remoteService.MemberManageService;
+import remoteService.OrderManageService;
+import utility.IDProducer;
 
 public class OrderProduct {
+	
+	@EJB OrderManageService orderManage;
+	@EJB MemberManageService memberManage;
 
 	public OrderProduct(){
 		
@@ -16,7 +25,8 @@ public class OrderProduct {
 	
 	public void startOrder(String memberId){
 		order = new Order();
-		order.setOrderMember(memberId);
+		Member m = memberManage.checkMemberInfo(memberId);
+		order.setOrderMember(m);
 	}
 	
 	public void addOrderItem(OrderDetail item){
@@ -27,7 +37,7 @@ public class OrderProduct {
 		ArrayList<OrderDetail> itemList = order.getItemList();
 		int index = 0;
 		for(OrderDetail item:itemList){
-			if(item.getProductId().equals(productId)){
+			if(item.getProduct().getProductId().equals(productId)){
 				break;
 			}
 			index++;
@@ -39,12 +49,12 @@ public class OrderProduct {
 	
 	public boolean saveOrder(){
 		boolean res = false;
-		//TODO get orderId
-		
+		String Id = IDProducer.getInstance().produceOrderId();
+		order.setOrderId(Id);
 		int orderState = 0;
 		order.setOrderState(orderState);
 		order.setOrderTime(new Date(System.currentTimeMillis()));
-		//TODO save order
+		orderManage.saveOrder(order);
 		return res;
 	}
 	

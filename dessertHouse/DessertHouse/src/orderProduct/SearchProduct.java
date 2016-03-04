@@ -2,29 +2,29 @@ package orderProduct;
 
 import java.util.ArrayList;
 
+import javax.ejb.EJB;
+
 import models.Product;
+import remoteService.ProductManageService;
 
 public class SearchProduct {
+	
+	@EJB ProductManageService productManage;
 
 	public SearchProduct(){
 		
 	}
 	
-	/**
-	 * 用户搜索产品
-	 * @param keywords
-	 * @return
-	 */
+	
 	public ArrayList<Product> searchProducts(String keywords){
-		return null;
+		return productManage.searchProducts(keywords);
 	}
 	
-	/**
-	 * 点击产品，显示详细信息
-	 * @param productId
-	 * @return
-	 */
+	public ArrayList<Product> getProductForStore(String storeId){
+		return productManage.retrieveProduct(storeId);
+	}
+	
 	public Product getProduct(String productId){
-		return null;
+		return productManage.findProduct(productId);
 	}
 }

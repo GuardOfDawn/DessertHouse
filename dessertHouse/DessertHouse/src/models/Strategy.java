@@ -1,5 +1,8 @@
 package models;
 
-public class Strategy {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Strategy implements Serializable{
 
 }

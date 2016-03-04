@@ -1,31 +1,54 @@
 package models;
 
-public class OrderDetail {
+import java.io.Serializable;
 
-	private String orderId;
-	private String productId;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="orderdetail")
+public class OrderDetail implements Serializable{
+
+	private Order order;
+	private Product product;
 	private double productPrice;
 	private int productCount;
 	
 	
-	public String getOrderId() {
-		return orderId;
+	@Id
+	@ManyToOne(cascade=CascadeType.ALL, optional=false)
+	@JoinColumn(name="orderId")
+	public Order getOrder() {
+		return order;
 	}
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
-	public String getProductId() {
-		return productId;
+	
+	@ManyToOne(cascade=CascadeType.ALL, optional=false)
+	@JoinColumn(name="productId")
+	public Product getProduct() {
+		return product;
 	}
-	public void setProductId(String productId) {
-		this.productId = productId;
+	public void setProduct(Product productId) {
+		this.product = productId;
 	}
+
+	@Column
 	public double getProductPrice() {
 		return productPrice;
 	}
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
 	}
+
+	@Column
 	public int getProductCount() {
 		return productCount;
 	}
