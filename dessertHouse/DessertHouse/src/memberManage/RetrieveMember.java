@@ -25,14 +25,18 @@ public class RetrieveMember {
 	@EJB BillDao billDao;
 	
 	public boolean findMemberName(String memberName) {
-		String column = "memberName";
-		ArrayList<Member> res = memberDao.find(column, memberName);
+		String[] columns = {"memberName"};
+		String[] values = new String[1];
+		values[0] = memberName;
+		ArrayList<Member> res = memberDao.find(columns, values);
 		return (res!=null)&&(res.size()!=0);
 	}
 
 	public boolean findMemberTel(String tel) {
-		String column = "memberTel";
-		ArrayList<Member> res = memberDao.find(column, tel);
+		String[] columns = {"memberTel"};
+		String[] values = new String[0];
+		values[0] = tel;
+		ArrayList<Member> res = memberDao.find(columns, values);
 		return (res!=null)&&(res.size()!=0);
 	}
 
@@ -46,7 +50,12 @@ public class RetrieveMember {
 	}
 	
 	public boolean matchMemberAndPassword(String member,String password){
-		return memberDao.checkLogin(member, password);
+		String[] columns = {"memberId","loginPassword"};
+		String[] values = new String[2];
+		values[0] = member;
+		values[1] = password;
+		ArrayList<Member> res = memberDao.find(columns, values);
+		return (res!=null)&&(res.size()==1);
 	}
 	
 	public boolean matchMemberAndPayPassword(String memberId,String password){
@@ -55,12 +64,14 @@ public class RetrieveMember {
 		values[0] = memberId;
 		values[1] = password;
 		ArrayList<Member> memberList = memberDao.find(columns, values);
-		return memberList!=null&&memberList.size()>0;
+		return (memberList!=null)&&(memberList.size()==1);
 	}
 	
 	public Member checkMemberInfo(String memberId) {
-		String column = "memberId";
-		ArrayList<Member> res = memberDao.find(column, memberId);
+		String[] columns = {"memberId"};
+		String[] values = new String[1];
+		values[0] = memberId;
+		ArrayList<Member> res = memberDao.find(columns, values);
 		if(res!=null&&res.size()>0){
 			return res.get(0);
 		}

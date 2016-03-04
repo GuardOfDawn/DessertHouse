@@ -60,7 +60,7 @@ public interface MemberManageService {
 	 * @param memberId
 	 * @param newPassword
 	 */
-	public void newPassword(String memberId,String newPassword);
+	public void newLoginPassword(String memberId,String newPassword);
 	
 	/**
 	 * 用户绑定银行卡时，输入银行卡号，系统检查该卡是否符合要求

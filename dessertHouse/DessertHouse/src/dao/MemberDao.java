@@ -12,16 +12,12 @@ public interface MemberDao {
 	
 	public Member find(String memberId);
 	
-	public ArrayList<Member> find(String column,String value);
-	
 	public ArrayList<Member> find(String[] columns,String[] values);
 	
-	public boolean checkLogin(String member,String password);
+	public boolean addMember(Member member);
 	
-	public String addMember(String[] columns,String[] values);
+	public boolean updateMember(Member member);
 	
-	public String modifyMember(String memberId,String[] columns,String[] values);
-	
-	public void saveRecharge(Recharge recharge);
+	public boolean saveRecharge(Recharge recharge);
 	
 }

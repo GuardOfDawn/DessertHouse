@@ -1,7 +1,5 @@
 package memberOperation;
 
-import java.sql.Date;
-
 import javax.ejb.EJB;
 
 import models.Member;
@@ -27,6 +25,7 @@ public class MemberRegister {
 	public boolean checkRegisterName(String memberName){
 		boolean res = memberManage.findMemberName(memberName);
 		if(res){
+			member = new Member();
 			member.setMemberName(memberName);
 		}
 		return res;
@@ -65,9 +64,12 @@ public class MemberRegister {
 	 * @return
 	 */
 	public Member register(String memberName,String password){
-		Member m = memberManage.register(memberName, member.getMemberTel(), password);
-		member = null;
-		return m;
+		MemberPasswd passwd = new MemberPasswd();
+		passwd.setId("");//TODO
+		passwd.setLoginPassword(password);
+		member.setPasswd(passwd);
+		//TODO
+		return member;
 	}
 	
 }

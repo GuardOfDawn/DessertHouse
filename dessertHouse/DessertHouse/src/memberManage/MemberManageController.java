@@ -52,8 +52,8 @@ public class MemberManageController implements MemberManageService{
 		return retrieveMember.matchMemberAndPassword(member, password);
 	}
 
-	public void newPassword(String memberId, String newPassword) {
-		modifyMember.modifyPassword(memberId, newPassword);
+	public void newLoginPassword(String memberId, String newPassword) {
+		modifyMember.modifyLoginPassword(memberId, newPassword);
 	}
 
 	public boolean checkBankCard(String bankCard) {
@@ -67,7 +67,7 @@ public class MemberManageController implements MemberManageService{
 	public boolean rechargeToMemberCard(String memberId, String bankCard, String payPassword, double money) {
 		if(retrieveMember.matchMemberAndPayPassword(memberId, payPassword)){
 			if(verify.checkBankResidual(bankCard,money)){
-				modifyMember.modifyResidual(memberId, bankCard, payPassword, money);
+				modifyMember.modifyResidual(memberId, bankCard, money);
 				return true;
 			}
 			else{

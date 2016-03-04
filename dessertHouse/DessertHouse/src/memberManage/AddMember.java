@@ -25,10 +25,7 @@ public class AddMember {
 	}
 
 	public void setPayPassword(String memberId, String payPassword){
-		String[] columns = {"payPassword"};
-		String[] values = new String[1];
-		values[0] = payPassword;
-		memberDao.modifyMember(memberId, columns, values);
+		
 	}
 	
 }
