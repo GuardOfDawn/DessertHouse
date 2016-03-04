@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>home page</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <div id="logo"><img width="120" height="120" src="image/logo.jpg" /></div>
+      <nav>
+        <ul class="lavaLampWithImage" id="lava_menu">
+          <li class="current"><a href="home.html">首页</a></li>
+          <li><a href="">店铺</a></li>
+          <li><a href="">商品</a></li>
+          <li><a href="">账单</a></li>
+          <li><a href="userLogin.html">登录</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="site_content">
+      <ul class="slideshow">
+        <li class="show"><img width="950" height="550" src="image/dessert-bg1.jpg" alt="&quot;Welcome to our dessert house website!&quot;" /></li>
+        <li><img width="950" height="550" src="image/dessert-bg2.jpg" alt="&quot;We are sure you will have a pleasent journey here.&quot;" /></li>
+        <li><img width="950" height="550" src="image/dessert-bg3.jpg" alt="&quot;We will provide you with the best desserts.&quot;" /></li>
+      </ul>
+    </div>
+  </div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="js/jquery.lavalamp.min.js"></script>
+  <script type="text/javascript" src="js/image_fade.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $("#lava_menu").lavaLamp({
+        fx: "backout",
+        speed: 200
+      });
+    });
+  </script>
+</body>
+</html>

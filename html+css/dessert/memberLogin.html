@@ -1,0 +1,66 @@
+!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>member login page</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <div id="logo"><img width="120" height="120" src="image/logo.jpg" /></div>
+      <nav>
+        <ul class="lavaLampWithImage" id="lava_menu">
+          <li><a href="home.html">首页</a></li>
+          <li><a href="">店铺</a></li>
+          <li><a href="">商品</a></li>
+          <li><a href="">账单</a></li>
+          <li class="current"><a href="userLogin.html">登录</a></li>
+        </ul>
+      </nav>
+    </header>
+	<div id="sidebar_container">
+		<div class="sidebar">
+			 <h3>Latest News</h3>
+			  <h4>New Website Launched</h4>
+			  <h5>January 1st, 2012</h5>
+		</div>
+	</div>
+    <div id="content">
+		<h2>欢迎来到我们的甜品屋</h2>
+		<p></p>
+		<form action="#" method="post" align="center">
+          <div class="form_settings">
+			<p><span>会员账号</span><input type="text" name="userName" value="" /></p>
+            <p><span>登陆密码</span><input type="text" name="password" value="" /></p>
+            <p style="padding-top: 30px"><span>&nbsp;</span>
+				<input class="submit" type="submit" name="login" value="登录" />
+			</p>
+				<ul style="text-align: right;">
+					<li><a href="">注册</a></li>
+				<ul>
+          </div>
+        </form>
+    </div>
+  </div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="js/jquery.lavalamp.min.js"></script>
+  <script type="text/javascript" src="js/image_fade.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $("#lava_menu").lavaLamp({
+        fx: "backout",
+        speed: 200
+      });
+    });
+  </script>
+</body>
+</html>
