@@ -1,0 +1,53 @@
+#tabs0 {  
+  
+ height: 450px;  
+  
+ width: 550px;  
+  
+ border: 1px solid #cbcbcb;  
+  
+ background: #F2F2F2; 
+  
+}  
+  
+.menu0{  
+  
+ width: 400px;  
+  
+}  
+  
+.menu0 li{  
+  
+ display:block;  
+  
+ float: left;  
+  
+ padding: 4px 0;  
+  
+ width:20px;  
+  
+ text-align: center;  
+  
+ cursor:pointer;  
+  
+ background: #FFFFff;  
+  
+}  
+  
+.menu0 li.hover{  
+  
+ background: #f2f6fb;  
+  
+}  
+  
+#main0 ul{  
+  
+ display: none;  
+  
+}  
+  
+#main0 ul.block{  
+  
+ display: block;  
+  
+}

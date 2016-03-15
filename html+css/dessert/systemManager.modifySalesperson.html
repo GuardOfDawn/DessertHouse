@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>system manager page</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <div id="logo"><img width="120" height="120" src="image/logo.jpg" /></div>
+      <nav>
+        <ul class="lavaLampWithImage" id="lava_menu">
+          <li><a href="systemManager.home.html">首页</a></li>
+          <li><a href="systemManager.store.html">店铺管理</a></li>
+          <li class="current"><a href="systemManager.salesperson.html">店员管理</a></li>
+          <li><a href="userLogin.html">登出</a></li>
+        </ul>
+      </nav>
+    </header>
+	<div id="site_content">
+	  <div id="sidebar_container">
+        <div class="sidebar">
+		 <ul>
+			<br></br>
+			<li><a href="systemManager.salesperson.html">浏览店员</a></li>
+			<br></br>
+			<li><a href="systemManager.addSalesperson.html">添加店员</a></li>
+			<br></br>
+			<li><a href="systemManager.modifySalesperson.html">修改店员信息</a></li>
+		 </ul>
+		</div>
+      </div>
+	  <div id="content">
+		<h2 align="center">添加店员</h2>
+        <form action="/Action" method="post">
+          <div class="form_settings" style="margin-left:150px">
+            <p><span>店员编号</span><input type="text" readonly="readonly" name="name" value="1" /></p>
+            <p><span>店员名称</span><input type="text" name="name" value="xxx" /></p>
+            <p><span>年龄</span><input type="text" name="name" value="xx" /></p>
+            <p><span>店员类型</span><input type="text" name="name" value="xxxx" /></p>
+            <p><span>所属店铺</span><input type="text" name="name" value="xxxxxxx" /></p>
+            <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="ensure" value="确认修改"/></p>
+          </div>
+        </form>
+	  </div>
+	</div>
+  </div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="js/jquery.lavalamp.min.js"></script>
+  <script type="text/javascript" src="js/image_fade.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $("#lava_menu").lavaLamp({
+        fx: "backout",
+        speed: 200
+      });
+    });
+  </script>
+  <script type="text/javascript">
+	function a(){
+		window.open("deleteStoreAlert.html",'go','scrollbars=yes,resizable=yes,width=720,height=400')
+	}
+  </script>
+</body>
+</html>

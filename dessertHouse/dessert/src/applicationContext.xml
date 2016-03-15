@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans         
+      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd        
+      http://www.springframework.org/schema/aop         
+      http://www.springframework.org/schema/aop/spring-aop-4.0.xsd        
+      http://www.springframework.org/schema/context         
+      http://www.springframework.org/schema/context/spring-context-4.0.xsd        
+      http://www.springframework.org/schema/tx         
+      http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+      http://www.springframework.org/schema/cache 
+      http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
+	<!-- <bean id="..." class="..."> collaborators and configuration for this 
+		bean go here </bean> <bean id="..." class="..."> collaborators and configuration 
+		for this bean go here </bean> more bean definitions go here -->
+      
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/desserthouse?autoReconnect=true" />
+		<property name="username" value="root" />
+		<property name="password" value="87281898" />
+	</bean>
+	
+
+	<!-- 配置sessionFactory -->
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="dessert.models" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.connection.autocommit">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="UserLoginAction" class="dessert.action.UserLoginAction">
+	</bean>
+	
+	<bean id="UserLogoutAction" class="dessert.action.UserLogoutAction">
+	</bean>
+	
+	<bean id="StoreViewAction" class="dessert.action.sysManager.StoreViewAction">
+	</bean>
+	
+	<bean id="StoreDeleteAction" class="dessert.action.sysManager.StoreDeleteAction">
+	</bean>
+	
+	<bean id="StoreAddAction" class="dessert.action.sysManager.StoreAddAction">
+	</bean>
+	
+	<bean id="SalespersonViewAction" class="dessert.action.sysManager.SalespersonViewAction">
+	</bean>
+	
+	<bean id="SalespersonDeleteAction" class="dessert.action.sysManager.SalespersonDeleteAction">
+	</bean>
+	
+	<bean id="SalespersonAddAction" class="dessert.action.sysManager.SalespersonAddAction">
+	</bean>
+	
+	<bean id="SalespersonModifyAction" class="dessert.action.sysManager.SalespersonModifyAction">
+	</bean>
+	
+	<bean id="ProductViewAction" class="dessert.action.headAttendant.ProductViewAction">
+	</bean>
+	
+	<bean id="ProductDeleteAction" class="dessert.action.headAttendant.ProductDeleteAction">
+	</bean>
+	
+	<bean id="ProductAddAction" class="dessert.action.headAttendant.ProductAddAction">
+	</bean>
+	
+	<bean id="ProductModifyAction" class="dessert.action.headAttendant.ProductModifyAction">
+	</bean>
+	
+	<bean id="CurrentScheduleViewAction" class="dessert.action.headAttendant.CurrentScheduleViewAction">
+	</bean>
+	
+	<bean id="ScheduleViewAction" class="dessert.action.headAttendant.ScheduleViewAction">
+	</bean>
+	
+	<bean id="ScheduleAddAction" class="dessert.action.headAttendant.ScheduleAddAction">
+	</bean>
+	
+	<bean id="ScheduleDeleteAction" class="dessert.action.headAttendant.ScheduleDeleteAction">
+	</bean>
+	
+	<bean id="ScheduleMessageAction" class="dessert.action.storeManager.ScheduleMessageAction">
+	</bean>
+	
+	<bean id="ScheduleHistoryAction" class="dessert.action.storeManager.ScheduleHistoryAction">
+	</bean>
+	
+	<bean id="ScheduleApproveAction" class="dessert.action.storeManager.ScheduleApproveAction">
+	</bean>
+	
+	
+	<!-- 定义 Autowired 自动注入 bean -->
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+	<!-- 扫描有注解的文件 base-package 包路径 -->
+	<context:component-scan base-package="dessert" />
+	
+	
+	<!-- 声明式容器事务管理 ,transaction-manager指定事务管理器为transactionManager -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*User" propagation="REQUIRED" />
+			<tx:method name="*" propagation="NOT_SUPPORTED" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 定义切面，在service包及子包中所有以Service结尾的方法中,执行有关的hibernate session的事务操作 -->
+	<aop:config>
+		<!-- 只对业务逻辑层实施事务 -->
+		<aop:pointcut id="serviceOperation"
+			expression="execution( * dessert.service..*Service.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
+	</aop:config>
+</beans>

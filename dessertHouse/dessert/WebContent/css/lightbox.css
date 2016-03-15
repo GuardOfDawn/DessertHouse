@@ -1,0 +1,31 @@
+.white_content { 
+	display: none; 
+	position: fixed;
+	top: 50%;
+	margin-left:-280px; 
+	left: 50%; 
+	margin-top:-240px;
+	width: 560px;
+	height: 460px; 
+	padding: 0px; 
+	border: 0px solid orange; 
+	background-color:#D5D5BE; 
+	z-index:10001; 
+	overflow: auto;
+} 
+
+.delete_content { 
+	display: none; 
+	position: fixed;
+	top: 50%;
+	margin-left:-230px; 
+	left: 50%; 
+	margin-top:-95px;
+	width: 460px;
+	height: 180px; 
+	padding: 0px; 
+	border: 0px solid orange; 
+	background-color:#D5D5BE; 
+	z-index:10001; 
+	overflow: auto;
+} 

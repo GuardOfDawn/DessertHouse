@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+
+	<package name="struts2" namespace="/Dessert" extends="struts-default">
+
+		<action name="userlogin" class="UserLoginAction">
+
+			<result name="SystemManager">/jsp/systemManager/home.jsp</result>
+			
+			<result name="BranchAttendant">/jsp/storeManager/home.jsp</result>
+			
+			<result name="HeadAttendant">/jsp/headAttendant/home.jsp</result>
+			
+			<result name="StoreManager">/jsp/storeManager/home.jsp</result>
+			
+			<result name="error">/jsp/userLogin.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+
+		</action>
+		
+		<action name="userlogout" class="UserLogoutAction">
+			
+			<result name="success">/jsp/userLogin.jsp</result>
+			
+		</action>
+		
+		<action name="storeview" class="StoreViewAction">
+			
+			<result name="success">/jsp/systemManager/store.jsp</result>
+			
+			<result name="error">/jsp/illegalVisitor.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="storedelete" class="StoreDeleteAction">
+			
+			<result name="success">/jsp/systemManager/store.jsp</result>
+			
+			<result name="failure">/jsp/systemManager/store.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="storeadd" class="StoreAddAction">
+			
+			<result name="success">/jsp/systemManager/addStore.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="salespersonview" class="SalespersonViewAction">
+			
+			<result name="success">/jsp/systemManager/salesperson.jsp</result>
+			
+			<result name="error">/jsp/illegalVisitor.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="salespersondelete" class="SalespersonDeleteAction">
+			
+			<result name="success">/jsp/systemManager/salesperson.jsp</result>
+			
+			<result name="failure">/jsp/systemManager/salesperson.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="salespersonadd" class="SalespersonAddAction">
+			
+			<result name="success">/jsp/systemManager/addSalesperson.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="salespersonmodify" class="SalespersonModifyAction">
+			
+			<result name="success">/jsp/systemManager/modifySalesperson.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="productview" class="ProductViewAction">
+			
+			<result name="success">/jsp/headAttendant/product.jsp</result>
+			
+			<result name="error">/jsp/illegalVisitor.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="productdelete" class="ProductDeleteAction">
+			
+			<result name="success">/jsp/headAttendant/product.jsp</result>
+			
+			<result name="failure">/jsp/headAttendant/product.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="productadd" class="ProductAddAction">
+			
+			<result name="success">/jsp/headAttendant/addProduct.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="productmodify" class="ProductModifyAction">
+			
+			<result name="success">/jsp/headAttendant/modifyProduct.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="currentscheduleview" class="CurrentScheduleViewAction">
+			
+			<result name="success">/jsp/headAttendant/currentSchedule.jsp</result>
+			
+			<result name="error">/jsp/illegalVisitor.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="scheduleview" class="ScheduleViewAction">
+			
+			<result name="success">/jsp/headAttendant/schedule.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="scheduleadd" class="ScheduleAddAction">
+			
+			<result name="success">/jsp/headAttendant/currentSchedule.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="scheduledelete" class="ScheduleDeleteAction">
+			
+			<result name="success">/jsp/headAttendant/currentSchedule.jsp</result>
+			
+			<result name="failure">/jsp/headAttendant/currentSchedule.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="schedulemessage" class="ScheduleMessageAction">
+			
+			<result name="success">/jsp/storeManager/scheduleMessage.jsp</result>
+			
+			<result name="error">/jsp/illegalVisitor.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="schedulehistory" class="ScheduleHistoryAction">
+			
+			<result name="success">/jsp/storeManager/scheduleHistory.jsp</result>
+			
+			<result name="error">/jsp/illegalVisitor.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="scheduleapprove" class="ScheduleApproveAction">
+			
+			<result name="success">/jsp/storeManager/scheduleMessage.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+
+	</package>
+	
+	
+
+</struts>
+

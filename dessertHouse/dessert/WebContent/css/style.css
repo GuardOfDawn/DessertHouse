@@ -99,7 +99,7 @@ ul {
 }
 
 ul li { 
-  font: normal 1.8em "News Cycle", arial, sans-serif;
+  font: normal 1.3em "News Cycle", arial, sans-serif;
   list-style-type: circle;
   margin: 0 0 0 0; 
   padding: 0 0 4px 5px;
@@ -182,7 +182,7 @@ header {
 
 #sidebar_container { 
   float: left;
-  width: 200px;
+  width: 250px;
   padding: 16px 0 0 0;
   height: 450px;
 }
@@ -207,11 +207,11 @@ header {
 }
 
 #content { 
-  text-align: left;
-  width: 720px;
+  text-align: justify;
+  width: 670px;
   padding: 20px 0 5px 0;
   margin: 0;
-  float: right;
+  float: left;
 }
 
 #content ul, .sidebar ul { 
@@ -264,7 +264,7 @@ footer a:hover {
   padding: 5px 0; 
   float: left; 
   width: 170px; 
-  text-align: center;
+  text-align: left;
 }
   
 .form_settings input, .form_settings textarea { 
@@ -280,7 +280,7 @@ footer a:hover {
   font: 140% 'News Cycle', arial, sans-serif; 
   border: 0; 
   width: 100px; 
-  margin: 0 0 0 162px; 
+  margin: 0 0 0 102px; 
   height: 30px;
   padding: 0 0 6px 0;
   cursor: pointer; 
@@ -335,7 +335,7 @@ table tr td {
 /* styling for the slideshow on the homepage */
 ul.slideshow {
   width: 950px;
-  height: 550px;
+  height: 350px;
   overflow: hidden;
   position: relative;
   margin: 0;
