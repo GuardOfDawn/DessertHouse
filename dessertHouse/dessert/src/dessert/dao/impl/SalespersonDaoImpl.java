@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import dessert.dao.BaseDao;
 import dessert.dao.SalespersonDao;
 import dessert.models.Salesperson;
+import dessert.models.Store;
 
 @Repository
 public class SalespersonDaoImpl implements SalespersonDao{
@@ -45,6 +46,7 @@ public class SalespersonDaoImpl implements SalespersonDao{
 				query.setParameter(i, values[i]);
 			}
 			query.executeUpdate();
+			session.close();
 			return true;
 		}
 		else{
@@ -79,10 +81,26 @@ public class SalespersonDaoImpl implements SalespersonDao{
 				query.setParameter(i, values[i]);
 			}
 			List list = query.list();
+			session.close();
 			return (ArrayList<Salesperson>) list;
 		}
 		else{
 			return findAllSalesperson();
+		}
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public Store findSalesperosnStore(String salespersonId){
+		session = baseDao.getNewSession();
+		Query query = session.createQuery("select sp.store from Salesperson sp where sp.salespersonId=?");
+		query.setString(0, salespersonId);
+		List list = query.list();
+		session.close();
+		if(list!=null&&list.size()==1){
+			return (Store)list.get(0);
+		}
+		else{
+			return null;
 		}
 	}
 
@@ -91,6 +109,7 @@ public class SalespersonDaoImpl implements SalespersonDao{
 		session = baseDao.getNewSession();
 		Query query = session.createQuery("select sp from Salesperson sp");
 		List list = query.list();
+		session.close();
 		return (ArrayList<Salesperson>) list;
 	}
 

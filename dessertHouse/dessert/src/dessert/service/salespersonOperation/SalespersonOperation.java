@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dessert.models.Salesperson;
+import dessert.models.Store;
 import dessert.remoteService.salespersonManage.SalespersonManageService;
 import dessert.remoteService.storeManage.StoreManageService;
 
@@ -37,8 +38,11 @@ public class SalespersonOperation implements SalespersonOpService{
 	public Salesperson getSalespersonInfo(String salespersonId) {
 		return salespersonManage.getSalespersonInfo(salespersonId);
 	}
+	
+	public Store getSalespersonStore(String salespersonId){
+		return null;
+	}
 
-	@Override
 	public ArrayList<Salesperson> getAllSalesperson() {
 		return salespersonManage.getAllSalesperson();
 	}

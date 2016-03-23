@@ -24,6 +24,10 @@ public interface ScheduleManageService {
 	 * @return
 	 */
 	public ArrayList<WeekSchedule> retrieveSchedule(String storeId, Date startTime, Date endTime);
+	
+	public ArrayList<ScheduleDetail> retrieveScheduleDetail(String scheduleId);
+
+	public ArrayList<ScheduleDetail> retrieveScheduleDetail(String scheduleId,Date date);
 
 	public ArrayList<WeekSchedule> retrieveDisapprovedSchedule();
 	

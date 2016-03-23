@@ -23,6 +23,7 @@ public class Store implements Serializable{
 	private String province;
 	private String city;
 	private String storeLoc;
+	private String imagePath;
 	private Set<Order> orderList;
 	private Set<Bill> billList;
 	private Set<Salesperson> salespersonList;
@@ -75,6 +76,14 @@ public class Store implements Serializable{
 	}
 	public void setStoreLoc(String storeLoc) {
 		this.storeLoc = storeLoc;
+	}
+
+	@Column
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	
 	@OneToMany(mappedBy="orderStore", cascade=CascadeType.ALL, fetch=FetchType.LAZY)

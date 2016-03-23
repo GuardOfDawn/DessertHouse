@@ -55,6 +55,7 @@ public class ScheduleAddAction extends BaseAction{
 				ScheduleDetail detail = new ScheduleDetail();
 				int day = Integer.parseInt(scheduleDetail[0]);
 				Date date = DayTransformer.getNewDate(startDate, day);
+				detail.setScheduleDetailId(IDProducer.getInstance().produceScheduleDetailId());
 				detail.setScheduleDate(date);
 				detail.setProductId(scheduleDetail[1]);
 				detail.setSellingPrice(Double.parseDouble(scheduleDetail[2]));

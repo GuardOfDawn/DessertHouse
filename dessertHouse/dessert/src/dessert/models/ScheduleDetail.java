@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @Table(name="scheduledetail")
 public class ScheduleDetail implements Serializable{
 	
+	private String scheduleDetailId;
 	private WeekSchedule weekSchedule;
 	private Date scheduleDate;
 	private String productId;
@@ -23,6 +24,13 @@ public class ScheduleDetail implements Serializable{
 	private int sellingCount;
 	
 	@Id
+	public String getScheduleDetailId() {
+		return scheduleDetailId;
+	}
+	public void setScheduleDetailId(String scheduleDetailId) {
+		this.scheduleDetailId = scheduleDetailId;
+	}
+	
 	@ManyToOne(cascade=CascadeType.ALL, optional=false)
 	@JoinColumn(name="scheduleId")
 	public WeekSchedule getWeekSchedule() {

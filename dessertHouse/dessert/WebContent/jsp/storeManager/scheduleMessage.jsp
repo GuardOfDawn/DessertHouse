@@ -19,8 +19,8 @@
       <div id="logo"><img width="120" height="120" src="<%=path %>/image/logo.jpg" /></div>
       <nav>
         <ul class="lavaLampWithImage" id="lava_menu">
-          <li class="current"><a href="<%=path%>/jsp/storeManager/home.jsp">首页</a></li>
-          <li><a href="<%=path%>/Dessert/schedulemessage">批准销售计划</a></li>
+          <li><a href="<%=path%>/jsp/storeManager/home.jsp">首页</a></li>
+          <li class="current"><a href="<%=path%>/Dessert/schedulemessage">批准销售计划</a></li>
           <li><a href="">店铺情况统计</a></li>
           <li><a href="<%=path%>/Dessert/userlogout">登出</a></li>
         </ul>
@@ -77,6 +77,15 @@
 		  <%  } 
 		    }%>
 		</table>
+		<p style="padding-top: 15px"><span>&nbsp;</span>
+           	<% String deleteRes = (String)request.getAttribute("approveRes");
+           	if(deleteRes!=null&&deleteRes.equals("true")){
+           		%>产品计划<%=request.getAttribute("approvedId") %>批准成功<%
+           	}
+           	else if(deleteRes!=null&&deleteRes.equals("false")){
+           		%>产品计划<%=request.getAttribute("approvedId") %>批准失败<%
+           	}%>
+        </p>
 	  </div>
     </div>
   </div>
@@ -98,10 +107,10 @@
     	
     }
 	function approveRow(scheduleId){
-    	
+		window.location.href='<%=path%>/Dessert/scheduleapprove?scheduleId='+scheduleId;
     }
 	function disapproveRow(scheduleId){
-	
+		
     }
   </script>
 </body>

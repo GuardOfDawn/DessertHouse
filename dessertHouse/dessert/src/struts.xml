@@ -12,7 +12,7 @@
 
 			<result name="SystemManager">/jsp/systemManager/home.jsp</result>
 			
-			<result name="BranchAttendant">/jsp/storeManager/home.jsp</result>
+			<result name="BranchAttendant">/jsp/branchAttendant/home.jsp</result>
 			
 			<result name="HeadAttendant">/jsp/headAttendant/home.jsp</result>
 			
@@ -190,9 +190,228 @@
 			
 			<result name="success">/jsp/storeManager/scheduleMessage.jsp</result>
 			
+			<result name="failure">/jsp/storeManager/scheduleMessage.jsp</result>
+			
 			<result name="input">/jsp/userLogin.jsp</result>
 		
 		</action>
+		
+		<action name="memberlogin" class="MemberLoginAction">
+			
+			<result name="success">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="failure">/jsp/member/memberLogin.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+		
+		</action>
+		
+		<action name="memberlogout" class="MemberLogoutAction">
+			
+			<result name="success">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="memberregister" class="MemberRegisterAction">
+			
+			<result name="success">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="nameExist">/jsp/member/memberRegister.jsp</result>
+			
+			<result name="telExist">/jsp/member/memberRegister.jsp</result>
+			
+		</action>
+		
+		<action name="membermodify" class="MemberModifyAction">
+			
+			<result name="success">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="failure">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="bandbankcard" class="BandBankCardAction">
+			
+			<result name="success">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="failure">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="cardactivate" class="CardActivateAction">
+			
+			<result name="success">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="failure">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="cardregain" class="CardRegainAction">
+			
+			<result name="success">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="failure">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="memberrecharge" class="MemberRechargeAction">
+			
+			<result name="success">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="failure">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="memberbonusconvert" class="MemberBonusConvertAction">
+			
+			<result name="success">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="failure">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="memberwithdraw" class="MemberWithdrawAction">
+			
+			<result name="success">/jsp/member/memberLogin.jsp</result>
+			
+			<result name="failure">/jsp/member/memberInfo.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="storevisitall" class="StoreVisitAllAction">
+			
+			<result name="success">/jsp/member/storeVisitAll.jsp</result>
+			
+		</action>
+		
+		<action name="storevisitone" class="StoreVisitOneAction">
+			
+			<result name="success">/jsp/member/storeVisitOne.jsp</result>
+			
+			<result name="error">/jsp/member/storeUnfind.jsp</result>
+			
+		</action>
+		
+		<action name="orderproduct" class="OrderProductAction">
+			
+			<result name="success">/jsp/member/orderForm.jsp</result>
+			
+			<result name="failure">/jsp/member/orderForm.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="ensureorder" class="EnsureOrderAction">
+			
+			<result name="success">/jsp/member/orderProductRes.jsp</result>
+			
+			<result name="failure">/jsp/member/orderProductRes.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="orderview" class="OrderViewAction">
+			
+			<result name="success">/jsp/member/orderView.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="rechargeview" class="RechargeViewAction">
+			
+			<result name="success">/jsp/member/rechargeView.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="billview" class="BillViewAction">
+			
+			<result name="success">/jsp/member/billView.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
+		<action name="sale" class="SaleAction">
+			
+			<result name="success">/jsp/branchAttendant/sale.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+			
+		</action>
+		
+		<action name="salememberinput" class="SalememberInputAction">
+			
+			<result name="success">/jsp/branchAttendant/sale.jsp</result>
+			
+			<result name="failure">/jsp/branchAttendant/sale.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+			
+		</action>
+		
+		<action name="ensuresale" class="EnsureSaleAction">
+			
+			<result name="success">/jsp/branchAttendant/saleRes.jsp</result>
+			
+			<result name="failure">/jsp/branchAttendant/saleRes.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+			
+		</action>
+		
+		<action name="searchmemberorder" class="SearchMemberOrderAction">
+			
+			<result name="success">/jsp/branchAttendant/dealOrder.jsp</result>
+			
+			<result name="failure">/jsp/branchAttendant/dealOrder.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+			
+		</action>
+		
+		<action name="membercheck" class="MemberCheckAction">
+			
+			<result name="success">/jsp/branchAttendant/memberCheck.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+			
+		</action>
+		
+		<action name="billcheck" class="BillCheckAction">
+			
+			<result name="success">/jsp/branchAttendant/billCheck.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+			
+		</action>
+		
+		<action name="rechargecheck" class="RechargeCheckAction">
+			
+			<result name="success">/jsp/branchAttendant/rechargeCheck.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+			
+		</action>
+		
 
 	</package>
 	

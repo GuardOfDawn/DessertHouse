@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import dessert.dao.ScheduleDao;
 import dessert.models.ScheduleDetail;
 import dessert.models.WeekSchedule;
+import dessert.utility.DayTransformer;
+import dessert.utility.FormulationNumber;
 
 @Service
 public class ScheduleManage implements ScheduleManageService{
@@ -42,16 +44,30 @@ public class ScheduleManage implements ScheduleManageService{
 	public ArrayList<WeekSchedule> retrieveSchedule(String storeId, Date startTime, Date endTime) {
 		if(storeId!=null){
 			if(startTime==null||endTime==null){
-				return scheduleDao.retrieveScheduleForStore(storeId);
+				return scheduleDao.retrieveScheduleForStore(storeId,FormulationNumber.scheduleApproved);
 			}
 			else{
 				Date[] period = {startTime,endTime};
-				return scheduleDao.retrieveScheduleForStore(storeId, period);
+				return scheduleDao.retrieveScheduleForStore(storeId, period,FormulationNumber.scheduleApproved);
 			}
 		}
 		else{
 			return null;
 		}
+	}
+	
+	public ArrayList<ScheduleDetail> retrieveScheduleDetail(String scheduleId){
+		return scheduleDao.findScheduleDetail(scheduleId);
+	}
+
+	public ArrayList<ScheduleDetail> retrieveScheduleDetail(String scheduleId,Date date){
+		ArrayList<ScheduleDetail> detailList = new ArrayList<ScheduleDetail>();
+		for(ScheduleDetail detail:scheduleDao.findScheduleDetail(scheduleId)){
+			if(DayTransformer.transform(detail.getScheduleDate()).equals(DayTransformer.transform(date))){
+				detailList.add(detail);
+			}
+		}
+		return detailList;
 	}
 
 	public ArrayList<WeekSchedule> retrieveScheduleForApprove() {

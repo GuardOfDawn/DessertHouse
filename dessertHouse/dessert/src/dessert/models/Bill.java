@@ -21,14 +21,17 @@ import javax.persistence.Table;
 public class Bill implements Serializable{
 
 	private String billId;
-	private Date billTime;
 	private Member billMember;
+	private Date billTime;
 	private Store billStore;
 	private int billType;
 	private double billCost;
+	private double favorRate;
+	private int bonusUsed;
 	private double costAfterDiscount;
 	private double payment;
-	private double change;
+	private double changeGiven;
+	private int bonusGiven;
 	private Set<BillDetail> itemList;
 	
 	
@@ -81,6 +84,22 @@ public class Bill implements Serializable{
 	public void setBillCost(double billCost) {
 		this.billCost = billCost;
 	}
+
+	@Column
+	public double getFavorRate() {
+		return favorRate;
+	}
+	public void setFavorRate(double favorRate) {
+		this.favorRate = favorRate;
+	}
+	
+	@Column
+	public int getBonusUsed() {
+		return bonusUsed;
+	}
+	public void setBonusUsed(int bonusUsed) {
+		this.bonusUsed = bonusUsed;
+	}
 	
 	@OneToMany(mappedBy="bill", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@OrderBy(value="productPrice DESC")
@@ -108,11 +127,19 @@ public class Bill implements Serializable{
 	}
 
 	@Column
-	public double getChange() {
-		return change;
+	public double getChangeGiven() {
+		return changeGiven;
 	}
-	public void setChange(double change) {
-		this.change = change;
+	public void setChangeGiven(double changeGiven) {
+		this.changeGiven = changeGiven;
+	}
+
+	@Column
+	public int getBonusGiven() {
+		return bonusGiven;
+	}
+	public void setBonusGiven(int bonusGiven) {
+		this.bonusGiven = bonusGiven;
 	}
 	
 }

@@ -13,6 +13,7 @@ public class IDProducer {
 		try {
     		BufferedReader reader = new BufferedReader(new FileReader(IdConfigFilePath));
     		memberIdMax = reader.readLine();
+    		memberPasswdIdMax = reader.readLine();
     		orderIdMax = reader.readLine();
     		billIdMax = reader.readLine();
     		rechargeIdMax = reader.readLine();
@@ -20,6 +21,7 @@ public class IDProducer {
     		salespersonIdMax = reader.readLine();
     		productIdMax = reader.readLine();
     		scheduleIdMax = reader.readLine();
+    		scheduleDetailIdMax = reader.readLine();
     		reader.close();
     	}
     	catch (Exception e) {
@@ -31,10 +33,11 @@ public class IDProducer {
 		return idProducer;
 	}
 	
-	private String IdConfigFilePath = "E:\\zhangyi\\1zy13\\Workplace-j2ee\\dessert\\WebContent"
+	private String IdConfigFilePath = "E:\\zhangyi\\1zy13\\Git\\DessertHouse\\dessertHouse\\dessert\\WebContent"
 					+"\\IdConfig.txt";
 
 	private String memberIdMax;
+	private String memberPasswdIdMax;
 	private String orderIdMax;
 	private String billIdMax;
 	private String rechargeIdMax;
@@ -42,6 +45,7 @@ public class IDProducer {
 	private String salespersonIdMax;
 	private String productIdMax;
 	private String scheduleIdMax;
+	private String scheduleDetailIdMax;
 	
 	public String produceMemberId(){
 		memberIdMax = String.valueOf(Integer.parseInt(memberIdMax)+1);
@@ -50,6 +54,17 @@ public class IDProducer {
 			bf.append(0);
 		}
 		bf.append(memberIdMax);
+		updateFile();
+		return bf.toString();
+	}
+	
+	public String produceMemberPasswdId(){
+		memberPasswdIdMax = String.valueOf(Integer.parseInt(memberPasswdIdMax)+1);
+		StringBuffer bf = new StringBuffer("PW");
+		for(int i=0;i<7-memberPasswdIdMax.length();i++){
+			bf.append(0);
+		}
+		bf.append(memberPasswdIdMax);
 		updateFile();
 		return bf.toString();
 	}
@@ -131,11 +146,24 @@ public class IDProducer {
 		return bf.toString();
 	}
 	
+	public String produceScheduleDetailId(){
+		scheduleDetailIdMax = String.valueOf(Integer.parseInt(scheduleDetailIdMax)+1);
+		StringBuffer bf = new StringBuffer("SD");
+		for(int i=0;i<10-scheduleDetailIdMax.length();i++){
+			bf.append(0);
+		}
+		bf.append(scheduleDetailIdMax);
+		updateFile();
+		return bf.toString();
+	}
+	
 	private void updateFile(){
 		try{
 			File file_out = new File(IdConfigFilePath);
 			FileWriter filewriter = new FileWriter(file_out);
 			filewriter.write(memberIdMax);
+			filewriter.write("\n");
+			filewriter.write(memberPasswdIdMax);
 			filewriter.write("\n");
 			filewriter.write(orderIdMax);
 			filewriter.write("\n");
@@ -150,6 +178,8 @@ public class IDProducer {
 			filewriter.write(productIdMax);
 			filewriter.write("\n");
 			filewriter.write(scheduleIdMax);
+			filewriter.write("\n");
+			filewriter.write(scheduleDetailIdMax);
 			filewriter.close();
 		}
 		catch(Exception e){

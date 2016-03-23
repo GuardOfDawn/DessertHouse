@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+import dessert.utility.BonusUtility;
 import dessert.utility.IDProducer;
+import dessert.utility.MemberLevelUtility;
 import dessert.utility.ProductType;
 
 @WebListener
@@ -30,6 +32,8 @@ HttpSessionListener{
 	public void contextInitialized(ServletContextEvent arg0) {
 		IDProducer.getInstance();
 		ProductType.getInstance();
+		MemberLevelUtility.getInstance();
+		BonusUtility.getInstance();
 	}
 
 }

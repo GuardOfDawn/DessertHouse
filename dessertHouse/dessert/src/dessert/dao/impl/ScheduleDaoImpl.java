@@ -57,28 +57,30 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ArrayList<WeekSchedule> retrieveScheduleForStore(String storeId) {
+	public ArrayList<WeekSchedule> retrieveScheduleForStore(String storeId,int state) {
 		session = baseDao.getNewSession();
 		Query query = session.createQuery("select ws from WeekSchedule ws "
-				+ "where ws.store.storeId=?");
+				+ "where ws.store.storeId=? and ws.scheduleState=?");
 		query.setString(0, storeId);
+		query.setInteger(1, state);
 		List list = query.list();
 		session.close();
 		return (ArrayList<WeekSchedule>) list;
 	}
 
 	@SuppressWarnings("rawtypes")
-	public ArrayList<WeekSchedule> retrieveScheduleForStore(String storeId, Date[] period) {
+	public ArrayList<WeekSchedule> retrieveScheduleForStore(String storeId, Date[] period,int state) {
 		ArrayList<WeekSchedule> scheduleList = new ArrayList<WeekSchedule>();
 		session = baseDao.getNewSession();
 		Query query = session.createQuery("select ws from WeekSchedule ws "
-				+ "where ws.store.storeId=?");
+				+ "where ws.store.storeId=? and ws.scheduleState=?");
 		query.setString(0, storeId);
+		query.setInteger(1, state);
 		List list = query.list();
 		session.close();
 		for(Object o:list){
 			WeekSchedule schedule = (WeekSchedule) o;
-			if((!schedule.getStartTime().before(period[0]))&&schedule.getEndTime().before(period[1])){
+			if((!schedule.getStartTime().after(period[0]))&&(!period[1].after(schedule.getEndTime()))){
 				scheduleList.add(schedule);
 			}
 		}
@@ -130,6 +132,21 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		}
 		else{
 			return false;
+		}
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public ArrayList<ScheduleDetail> findScheduleDetail(String scheduleId){
+		if(scheduleId!=null){
+			session = baseDao.getNewSession();
+			Query query = session.createQuery("select ws.scheduleDetailList from WeekSchedule ws where ws.scheduleId=?");
+			query.setString(0, scheduleId);
+			List list = query.list();
+			session.close();
+			return (ArrayList<ScheduleDetail>) list;
+		}
+		else{
+			return null;
 		}
 	}
 

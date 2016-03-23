@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ProductType {
 
 	private static ProductType productType = new ProductType();
-	private String ProductTypeFilePath =  "E:\\zhangyi\\1zy13\\Workplace-j2ee\\dessert\\WebContent"
+	private String ProductTypeFilePath =  "E:\\zhangyi\\1zy13\\Git\\DessertHouse\\dessertHouse\\dessert\\WebContent"
 			+"\\ProductTypeConfig.txt";
 	
 	private ArrayList<String> productTypeList;

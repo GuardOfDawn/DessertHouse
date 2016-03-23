@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
@@ -22,15 +21,20 @@ public class Member implements Serializable{
 	
 	private String memberId;
 	private String memberName;
-	private String memberTel;
+	private int memberGender;
 	private int memberAge;
+	private String memberTel;
 	private String memberLoc;
 	private int cardState;
+	private String bankCardId;
 	private int memberLevel;
 	private double residual;
 	private int bonusPoint;
 	private Date registerTime;
+	private double totalRecharge;
 	private Date latestUsage;
+	private Date lastRecharge;
+	private Date suspendTime;
 	private MemberPasswd passwd;
 	private Set<Recharge> rechargeList;
 	private Set<Order> orderList;
@@ -54,11 +58,11 @@ public class Member implements Serializable{
 	}
 
 	@Column
-	public String getMemberTel() {
-		return memberTel;
+	public int getMemberGender() {
+		return memberGender;
 	}
-	public void setMemberTel(String memberTel) {
-		this.memberTel = memberTel;
+	public void setMemberGender(int memberGender) {
+		this.memberGender = memberGender;
 	}
 
 	@Column
@@ -67,6 +71,14 @@ public class Member implements Serializable{
 	}
 	public void setMemberAge(int memberAge) {
 		this.memberAge = memberAge;
+	}
+
+	@Column
+	public String getMemberTel() {
+		return memberTel;
+	}
+	public void setMemberTel(String memberTel) {
+		this.memberTel = memberTel;
 	}
 
 	@Column
@@ -83,6 +95,14 @@ public class Member implements Serializable{
 	}
 	public void setCardState(int cardState) {
 		this.cardState = cardState;
+	}
+	
+	@Column
+	public String getBankCardId() {
+		return bankCardId;
+	}
+	public void setBankCardId(String bankCardId) {
+		this.bankCardId = bankCardId;
 	}
 
 	@Column
@@ -125,8 +145,31 @@ public class Member implements Serializable{
 		this.latestUsage = latestUsage;
 	}
 
-	@OneToOne
-	@JoinColumn(name="memberId",insertable=true,unique=true)
+	@Column
+	public double getTotalRecharge() {
+		return totalRecharge;
+	}
+	public void setTotalRecharge(double totalRecharge) {
+		this.totalRecharge = totalRecharge;
+	}
+	
+	@Column
+	public Date getLastRecharge() {
+		return lastRecharge;
+	}
+	public void setLastRecharge(Date lastRecharge) {
+		this.lastRecharge = lastRecharge;
+	}
+	
+	@Column
+	public Date getSuspendTime() {
+		return suspendTime;
+	}
+	public void setSuspendTime(Date suspendTime) {
+		this.suspendTime = suspendTime;
+	}
+
+	@OneToOne(mappedBy="member")
 	public MemberPasswd getPasswd() {
 		return passwd;
 	}

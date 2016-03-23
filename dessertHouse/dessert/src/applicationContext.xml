@@ -108,6 +108,78 @@
 	<bean id="ScheduleApproveAction" class="dessert.action.storeManager.ScheduleApproveAction">
 	</bean>
 	
+	<bean id="MemberLoginAction" class="dessert.action.member.MemberLoginAction">
+	</bean>
+	
+	<bean id="MemberLogoutAction" class="dessert.action.member.MemberLogoutAction">
+	</bean>
+	
+	<bean id="MemberRegisterAction" class="dessert.action.member.MemberRegisterAction">
+	</bean>
+	
+	<bean id="MemberModifyAction" class="dessert.action.member.MemberModifyAction">
+	</bean>
+	
+	<bean id="BandBankCardAction" class="dessert.action.member.BandBankCardAction">
+	</bean>
+	
+	<bean id="CardActivateAction" class="dessert.action.member.CardActivateAction">
+	</bean>
+	
+	<bean id="CardRegainAction" class="dessert.action.member.CardRegainAction">
+	</bean>
+	
+	<bean id="MemberRechargeAction" class="dessert.action.member.MemberRechargeAction">
+	</bean>
+	
+	<bean id="MemberBonusConvertAction" class="dessert.action.member.MemberBonusConvertAction">
+	</bean>
+	
+	<bean id="MemberWithdrawAction" class="dessert.action.member.MemberWithdrawAction">
+	</bean>
+	
+	<bean id="StoreVisitAllAction" class="dessert.action.memberOrder.StoreVisitAllAction">
+	</bean>
+	
+	<bean id="StoreVisitOneAction" class="dessert.action.memberOrder.StoreVisitOneAction">
+	</bean>
+	
+	<bean id="OrderProductAction" class="dessert.action.memberOrder.OrderProductAction">
+	</bean>
+	
+	<bean id="EnsureOrderAction" class="dessert.action.memberOrder.EnsureOrderAction">
+	</bean>
+	
+	<bean id="OrderViewAction" class="dessert.action.memberOrder.OrderViewAction">
+	</bean>
+	
+	<bean id="RechargeViewAction" class="dessert.action.memberOrder.RechargeViewAction">
+	</bean>
+	
+	<bean id="BillViewAction" class="dessert.action.memberOrder.BillViewAction">
+	</bean>
+	
+	<bean id="SaleAction" class="dessert.action.branchAttendant.SaleAction">
+	</bean>
+	
+	<bean id="SalememberInputAction" class="dessert.action.branchAttendant.SalememberInputAction">
+	</bean>
+	
+	<bean id="EnsureSaleAction" class="dessert.action.branchAttendant.EnsureSaleAction">
+	</bean>
+	
+	<bean id="SearchMemberOrderAction" class="dessert.action.branchAttendant.SearchMemberOrderAction">
+	</bean>
+	
+	<bean id="MemberCheckAction" class="dessert.action.branchAttendant.MemberCheckAction">
+	</bean>
+	
+	<bean id="BillCheckAction" class="dessert.action.branchAttendant.BillCheckAction">
+	</bean>
+	
+	<bean id="RechargeCheckAction" class="dessert.action.branchAttendant.RechargeCheckAction">
+	</bean>
+	
 	
 	<!-- 定义 Autowired 自动注入 bean -->
 	<bean

@@ -14,9 +14,9 @@ public interface ScheduleDao {
 	
 	public ArrayList<WeekSchedule> retrieveAllSchedule();
 	
-	public ArrayList<WeekSchedule> retrieveScheduleForStore(String storeId);
+	public ArrayList<WeekSchedule> retrieveScheduleForStore(String storeId,int state);
 
-	public ArrayList<WeekSchedule> retrieveScheduleForStore(String storeId,Date[] period);
+	public ArrayList<WeekSchedule> retrieveScheduleForStore(String storeId,Date[] period,int state);
 	
 	public ArrayList<WeekSchedule> retrieveScheduleByState(int scheduleState);
 	
@@ -25,6 +25,8 @@ public interface ScheduleDao {
 	public boolean deleteSchedule(WeekSchedule schedule);
 	
 	public boolean removeSchedule(String scheduleId);
+	
+	public ArrayList<ScheduleDetail> findScheduleDetail(String scheduleId);
 
 	public boolean removeScheduleDetail(String scheduleId);
 

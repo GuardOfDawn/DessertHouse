@@ -18,8 +18,8 @@
       <div id="logo"><img width="120" height="120" src="<%=path %>/image/logo.jpg" /></div>
       <nav>
         <ul class="lavaLampWithImage" id="lava_menu">
-          <li class="current"><a href="<%=path%>/jsp/storeManager/home.jsp">首页</a></li>
-          <li><a href="<%=path%>/Dessert/schedulemessage">批准销售计划</a></li>
+          <li><a href="<%=path%>/jsp/storeManager/home.jsp">首页</a></li>
+          <li class="current"><a href="<%=path%>/Dessert/schedulemessage">批准销售计划</a></li>
           <li><a href="">店铺情况统计</a></li>
           <li><a href="<%=path%>/Dessert/userlogout">登出</a></li>
         </ul>
@@ -54,7 +54,7 @@
 		<table id="approvedScheduleTable" style="width:100%; border-spacing:0;">
 		  <tr><th>编号</th><th>店铺</th><th>生效时间</th><th>终止时间</th><th>状态</th><th>查看</th></tr>
 		  <%if(approvedSchedule.getListBean()!=null){
-		    for(int i=0;i<approvedSchedule.getListBean().size();i++){
+		      for(int i=0;i<approvedSchedule.getListBean().size();i++){
 				pageContext.setAttribute("item", approvedSchedule.getBean(i));
 				pageContext.setAttribute("store", ((WeekSchedule)approvedSchedule.getBean(i)).getStore());
 				  %>
@@ -69,8 +69,8 @@
 		      		onclick="checkRow('<jsp:getProperty name="item" property="scheduleId" />')" />
 		      </td>
 		  </tr>
-		  <%}
-		  }%>
+		  <%  } 
+		    }%>
 		</table>
 		
 		<h2 align="center">审批未通过的计划</h2>

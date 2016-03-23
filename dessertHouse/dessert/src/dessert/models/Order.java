@@ -24,6 +24,9 @@ public class Order implements Serializable{
 	private Member orderMember;
 	private Store orderStore;
 	private double orderCost;
+	private double favorRate;
+	private int bonusUsed;
+	private double costAfterDiscount;
 	private int orderState;//0-unpaid;1-paid;2-cancel
 	private Set<OrderDetail> itemList;
 	
@@ -68,6 +71,30 @@ public class Order implements Serializable{
 	}
 	public void setOrderCost(double orderCost) {
 		this.orderCost = orderCost;
+	}
+
+	@Column
+	public double getFavorRate() {
+		return favorRate;
+	}
+	public void setFavorRate(double favorRate) {
+		this.favorRate = favorRate;
+	}
+
+	@Column
+	public int getBonusUsed() {
+		return bonusUsed;
+	}
+	public void setBonusUsed(int bonusUsed) {
+		this.bonusUsed = bonusUsed;
+	}
+
+	@Column
+	public double getCostAfterDiscount() {
+		return costAfterDiscount;
+	}
+	public void setCostAfterDiscount(double costAfterDiscount) {
+		this.costAfterDiscount = costAfterDiscount;
 	}
 
 	@Column

@@ -8,7 +8,7 @@ import java.util.Calendar;
 public class DayTransformer {
 
 	public static String transform(Date dateTime){
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");// HH:mm:ss
 		String str = formatter.format(dateTime);
 		return str;
 	}

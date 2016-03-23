@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import dessert.dao.SalespersonDao;
 import dessert.dao.StoreUserDao;
 import dessert.models.Salesperson;
+import dessert.models.Store;
 import dessert.models.StoreUser;
 
 @Service
@@ -62,6 +63,10 @@ public class SalepersonManageController implements SalespersonManageService{
 		else{
 			return null;
 		}
+	}
+
+	public Store getSalespersonStore(String salespersonId){
+		return salespersonDao.findSalesperosnStore(salespersonId);
 	}
 
 	public ArrayList<Salesperson> getAllSalesperson() {

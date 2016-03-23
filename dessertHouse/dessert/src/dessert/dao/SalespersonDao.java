@@ -3,6 +3,7 @@ package dessert.dao;
 import java.util.ArrayList;
 
 import dessert.models.Salesperson;
+import dessert.models.Store;
 
 public interface SalespersonDao {
 
@@ -13,6 +14,8 @@ public interface SalespersonDao {
 	public Salesperson findSalesperson(String salespersonId);
 	
 	public ArrayList<Salesperson> findSalesperson(String[] columns,String[] values);
+
+	public Store findSalesperosnStore(String salespersonId);
 	
 	public ArrayList<Salesperson> findAllSalesperson();
 	
