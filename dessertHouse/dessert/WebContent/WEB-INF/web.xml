@@ -15,14 +15,26 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-<listener>
-	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/applicationContext.xml</param-value>
 	</context-param>
+	
+	<servlet>
+	    <servlet-name>DisplayChart</servlet-name>
+	    <servlet-class>
+	        org.jfree.chart.servlet.DisplayChart   <!--这个固定不变-->
+	    </servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>DisplayChart</servlet-name>
+        <url-pattern>/DisplayChart</url-pattern>
+    </servlet-mapping>
 
 </web-app>

@@ -13,6 +13,9 @@
   <link rel="stylesheet" type="text/css" href="<%=path %>/css/lightbox.css" />
   <!-- modernizr enables HTML5 elements and feature detects -->
   <script type="text/javascript" src="<%=path %>/js/modernizr-1.5.min.js"></script>
+  <script type="text/javascript" src="<%=path %>/calc/calendar.js"></script>
+  <script type="text/javascript" src="<%=path %>/calc/calendar-en.js"></script>
+  <link type="text/css" rel="stylesheet" href="<%=path %>/calc/calendar-system.css"/>
 </head>
 <body>
   <div id="main">
@@ -58,17 +61,11 @@
         <div style="margin-left:80px">
 	        <div class="form_settings" style="margin-left:10px" >
 	          <span style="font-size:22px">选择周数</span>
-	          <p>
-	            <select id="scheduleStartTime" name="scheduleStartTime" >
-	             
-	          	  <option value="null" selected="selected">请选择周数</option>
-	         	  <option value="2016-03-14">2016-03-14（周一）</option>
-	         	  <option value="2016-03-21">2016-03-21（周一）</option>
-	         	  <option value="2016-03-28">2016-03-28（周一）</option>
-	         	 
-	            </select>
-	          </p>
+	          <div class="form_settings">
+		    	<input type="text" id="mydate" size="12" value="选择日期" onclick="calShow('mydate');" onfocus="calShow('mydate');" readonly="readonly" style="width:80px;margin-left:-40px" onblur="checkStartDate()">
+			  </div>
 	        </div>
+	        <br>
 	        <div class="form_settings" style="margin-left:10px" >
 	          <span style="font-size:22px">选择店铺</span>
 	          <p>
@@ -227,6 +224,35 @@
   </script>
   <script type="text/javascript" src="<%=path %>/js/addSchedule.js"></script>
   <script type="text/javascript">
+  function checkStartDate(){
+  	var scheduleStartTime = document.getElementById("mydate").value;
+  	var parts = scheduleStartTime.split("-");
+	var date = new Date(parts[0],parts[1]-1,parts[2]);
+	var week = date.getDay();
+	var dis = parseInt(week)-1;
+	if(dis<0){
+		dis += 7;
+	}
+	var startTime = new Date(date-1000*60*60*24*dis);
+	var year = startTime.getFullYear();
+	var month = startTime.getMonth()+1;
+	var day = startTime.getDate();
+	if(month<10){
+		if(day<10){
+			document.getElementById("mydate").value=year+"-0"+month+"-0"+day;
+		}
+		else{
+			document.getElementById("mydate").value=year+"-0"+month+"-"+day;
+		}
+	}else{
+		if(day<10){
+			document.getElementById("mydate").value=year+"-"+month+"-0"+day;
+		}
+		else{
+			document.getElementById("mydate").value=year+"-"+month+"-"+day;
+		}
+	}
+  }
   function submitSchedule(){
   	var schedule = "";
   	var week = ["mondaySchedule","tuesdaySchedule","wednesdaySchedule","thursdaySchedule"
@@ -248,7 +274,7 @@
   	schedule=schedule.substring(0,schedule.length-1);
   	var store = document.getElementById("scheduleStoreId").value;
   	var storeId = store.split(";")[0];
-  	var scheduleStartTime = document.getElementById("scheduleStartTime").value;
+  	var scheduleStartTime = document.getElementById("mydate").value;
   	window.location.href='<%=path%>/Dessert/scheduleadd?scheduleStoreId='+storeId+'&scheduleStartTime='+scheduleStartTime+'&newschedule='+schedule;
   }
   </script>

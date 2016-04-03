@@ -18,4 +18,6 @@ public interface StoreManageService {
 	
 	public ArrayList<Store> retrieveStore(String province,String city);
 	
+	public ArrayList<String> getAllStoreId();
+	
 }

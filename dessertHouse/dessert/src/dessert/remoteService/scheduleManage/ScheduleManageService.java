@@ -24,7 +24,9 @@ public interface ScheduleManageService {
 	 * @return
 	 */
 	public ArrayList<WeekSchedule> retrieveSchedule(String storeId, Date startTime, Date endTime);
-	
+
+	public WeekSchedule retrieveSchedule(String storeId, Date date);
+
 	public ArrayList<ScheduleDetail> retrieveScheduleDetail(String scheduleId);
 
 	public ArrayList<ScheduleDetail> retrieveScheduleDetail(String scheduleId,Date date);
@@ -34,7 +36,11 @@ public interface ScheduleManageService {
 	public ArrayList<WeekSchedule> retrieveScheduleForApprove();
 	
 	public void approveSchedule(WeekSchedule schedule);
+
+	public void updateSchedule(WeekSchedule schedule);
 	
 	public boolean addScheduleDetail(ScheduleDetail scheduleDetail);
+	
+	public boolean updateScheduleDetail(ScheduleDetail scheduleDetail);
 	
 }

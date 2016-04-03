@@ -23,7 +23,7 @@
           <li><a href="<%=path%>/Dessert/sale">处理销售</a></li>
           <li class="current"><a href="<%=path%>/jsp/branchAttendant/dealOrder.jsp">处理预订</a></li>
           <li><a href="<%=path%>/Dessert/membercheck">会员查看</a></li>
-          <li><a href="">店铺信息</a></li>
+          <li><a href="<%=path%>/jsp/branchAttendant/storeInfo.jsp">店铺信息</a></li>
           <li><a href="<%=path%>/Dessert/userlogout">登出</a></li>
         </ul>
       </nav>
@@ -57,7 +57,7 @@
 	        <p><strong>对不起，您的输入的会员账户不存在，或者账户已经失效！</strong></p>
 	      <%}
 	        else{%>
-	        <p><strong>对不起，您输入的会员账户没有未处理的预订单！</strong></p>
+	        <p><strong>对不起，您输入的会员账户没有未处理的预订单！欢迎前来本店购买产品！</strong></p>
 	    <%  }
 	      }
 	      else{%>
@@ -81,7 +81,7 @@
 		  	<p><span>会员积分:</span><input id="bonusAutoInput" type="text" value="<jsp:getProperty name="member" property="bonusPoint" />" readonly="readonly" style="margin-left:-14px;width:80px;"/></p>
           </div>
 	      <table id="approvedScheduleTable" style="width:100%; border-spacing:0;">
-		  <tr><th>编号</th><th>预订时间</th><th>店铺名称</th><th>折扣前价格</th><th>折扣率</th><th>使用积分</th><th>折扣后价格</th><th>查看</th><th>退订</th><th>结算</th></tr>
+		  <tr><th>编号</th><th>下单时间</th><th>预订日期</th><th>店铺名称</th><th>折扣前价格</th><th>折扣率</th><th>使用积分</th><th>折扣后价格</th><th>查看</th><th>退订</th><th>结算</th></tr>
 		  <%if(orderForMember.getListBean()!=null){
 		      for(int i=0;i<orderForMember.getListBean().size();i++){
 				pageContext.setAttribute("order", orderForMember.getBean(i));
@@ -90,6 +90,7 @@
 		  <tr>
 		  	  <td><jsp:getProperty name="order" property="orderId" /></td>
 		  	  <td><jsp:getProperty name="order" property="orderTime" /></td>
+		  	  <td><jsp:getProperty name="order" property="targetDay" /></td>
 		  	  <td><jsp:getProperty name="store" property="storeName" /></td>
 		      <td><jsp:getProperty name="order" property="orderCost" /></td>
 		      <td><jsp:getProperty name="order" property="favorRate" /></td>
@@ -113,9 +114,14 @@
 		    }%>
 		</table>
 		<div>
-		  
+		
 		</div>
 	    <%} %>
+	    <div>
+	      <%if(request.getAttribute("payRes")!=null){ %>
+	      <p>预订单结算成功！</p>
+	      <%} %>
+	    </div>
 	  </div>
 	
 	</div>
@@ -146,7 +152,8 @@
     	
     }
     function payRow(orderId){
-	
+    	var memberId = document.getElementById("memberIdInput").value;
+    	window.location.href='<%=path%>/Dessert/payorder?orderId='+orderId+'&memberId='+memberId;
 	}
   </script>
 </body>

@@ -62,7 +62,7 @@
 		  	  <td><jsp:getProperty name="store" property="storeId" /></td>
 		      <td><jsp:getProperty name="item" property="startTime" /></td>
 		      <td><jsp:getProperty name="item" property="endTime" /></td>
-		      <td><jsp:getProperty name="item" property="scheduleState" /></td>
+		      <td>审批通过</td>
 			  <td>
 		      	<input class="submit" type="button" name="checkSchedule" value="查看"
 		      		onclick="checkRow('<jsp:getProperty name="item" property="scheduleId" />')" />

@@ -21,7 +21,7 @@
         <ul class="lavaLampWithImage" id="lava_menu">
           <li><a href="<%=path%>/jsp/storeManager/home.jsp">首页</a></li>
           <li class="current"><a href="<%=path%>/Dessert/schedulemessage">批准销售计划</a></li>
-          <li><a href="">店铺情况统计</a></li>
+          <li><a href="<%=path%>/jsp/storeManager/memberConditionDis.jsp">店铺情况统计</a></li>
           <li><a href="<%=path%>/Dessert/userlogout">登出</a></li>
         </ul>
       </nav>
@@ -60,7 +60,7 @@
 		  	  <td><jsp:getProperty name="store" property="storeId" /></td>
 		      <td><jsp:getProperty name="item" property="startTime" /></td>
 		      <td><jsp:getProperty name="item" property="endTime" /></td>
-		      <td><jsp:getProperty name="item" property="scheduleState" /></td>
+		      <td>未审批</td>
 			  <td>
 		      	<input class="submit" type="button" name="checkSchedule" value="查看"
 		      		onclick="checkRow('<jsp:getProperty name="item" property="scheduleId" />')" />
@@ -78,12 +78,21 @@
 		    }%>
 		</table>
 		<p style="padding-top: 15px"><span>&nbsp;</span>
-           	<% String deleteRes = (String)request.getAttribute("approveRes");
-           	if(deleteRes!=null&&deleteRes.equals("true")){
+           	<% String approveRes = (String)request.getAttribute("approveRes");
+           	if(approveRes!=null&&approveRes.equals("true")){
            		%>产品计划<%=request.getAttribute("approvedId") %>批准成功<%
            	}
-           	else if(deleteRes!=null&&deleteRes.equals("false")){
+           	else if(approveRes!=null&&approveRes.equals("false")){
            		%>产品计划<%=request.getAttribute("approvedId") %>批准失败<%
+           	}%>
+        </p>
+        <p style="padding-top: 15px"><span>&nbsp;</span>
+           	<% String disapproveRes = (String)request.getAttribute("disapproveRes");
+           	if(disapproveRes!=null&&disapproveRes.equals("true")){
+           		%>产品计划<%=request.getAttribute("disapprovedId") %>不批准成功<%
+           	}
+           	else if(disapproveRes!=null&&disapproveRes.equals("false")){
+           		%>产品计划<%=request.getAttribute("disapprovedId") %>不批准失败<%
            	}%>
         </p>
 	  </div>
@@ -110,7 +119,7 @@
 		window.location.href='<%=path%>/Dessert/scheduleapprove?scheduleId='+scheduleId;
     }
 	function disapproveRow(scheduleId){
-		
+		window.location.href='<%=path%>/Dessert/scheduledisapprove?scheduleId='+scheduleId;
     }
   </script>
 </body>

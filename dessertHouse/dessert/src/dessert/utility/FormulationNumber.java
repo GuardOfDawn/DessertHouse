@@ -15,6 +15,8 @@ public class FormulationNumber {
 	public static int cardSuspend = 2;
 	
 	public static int cardStop = 3;
+
+	public static int cardWithdraw = 4;
 	
 	public static int orderMade = 0;
 
@@ -35,5 +37,7 @@ public class FormulationNumber {
 	public static int cardPay = 1;
 	
 	public static double bonusRate = 0.1;
+	
+	public static int popluarProductCount = 5;
 	
 }

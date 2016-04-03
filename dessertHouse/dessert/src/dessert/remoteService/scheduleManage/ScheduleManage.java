@@ -55,6 +55,22 @@ public class ScheduleManage implements ScheduleManageService{
 			return null;
 		}
 	}
+
+	public WeekSchedule retrieveSchedule(String storeId, Date date){
+		if(storeId!=null||date==null){
+			Date[] period = {date,date};
+			ArrayList<WeekSchedule> sList = scheduleDao.retrieveScheduleForStore(storeId, period, FormulationNumber.scheduleApproved);
+			if(sList!=null&&sList.size()==1){
+				return sList.get(0);
+			}
+			else{
+				return null;
+			}
+		}
+		else{
+			return null;
+		}
+	}
 	
 	public ArrayList<ScheduleDetail> retrieveScheduleDetail(String scheduleId){
 		return scheduleDao.findScheduleDetail(scheduleId);
@@ -71,26 +87,31 @@ public class ScheduleManage implements ScheduleManageService{
 	}
 
 	public ArrayList<WeekSchedule> retrieveScheduleForApprove() {
-		int forApprove = 0;
-		return scheduleDao.retrieveScheduleByState(forApprove);
+		return scheduleDao.retrieveScheduleByState(FormulationNumber.scheduleMade);
 	}
 
 	public ArrayList<WeekSchedule> retrieveApprovedSchedule(){
-		int approved = 1;
-		return scheduleDao.retrieveScheduleByState(approved);
+		return scheduleDao.retrieveScheduleByState(FormulationNumber.scheduleApproved);
 	}
 
 	public ArrayList<WeekSchedule> retrieveDisapprovedSchedule(){
-		int disapproved = 2;
-		return scheduleDao.retrieveScheduleByState(disapproved);
+		return scheduleDao.retrieveScheduleByState(FormulationNumber.scheduleDisapproved);
 	}
 
 	public void approveSchedule(WeekSchedule schedule) {
 		scheduleDao.updateSchedule(schedule);
 	}
+
+	public void updateSchedule(WeekSchedule schedule){
+		scheduleDao.updateSchedule(schedule);
+	}
 	
 	public boolean addScheduleDetail(ScheduleDetail scheduleDetail){
 		return scheduleDao.saveScheduleDetail(scheduleDetail);
+	}
+	
+	public boolean updateScheduleDetail(ScheduleDetail scheduleDetail){
+		return scheduleDao.updateScheduleDetail(scheduleDetail);
 	}
 
 }

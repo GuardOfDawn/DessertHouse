@@ -10,11 +10,6 @@ public interface ProductManageService {
 	
 	public Product findProduct(String productId);
 
-	/**
-	 * TODO ????
-	 * @param storeId
-	 * @return
-	 */
 	public ArrayList<Product> retrieveProduct(String storeId);
 	
 	public ArrayList<Product> getAllProduct();

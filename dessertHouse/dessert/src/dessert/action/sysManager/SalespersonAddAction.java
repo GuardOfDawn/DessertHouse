@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 import dessert.action.BaseAction;
 import dessert.models.Salesperson;
 import dessert.models.Store;
-import dessert.service.salespersonOperation.SalespersonOpService;
-import dessert.service.storeOperation.StoreOpService;
+import dessert.remoteService.salespersonManage.SalespersonManageService;
+import dessert.remoteService.storeManage.StoreManageService;
 import dessert.utility.IDProducer;
 
 @Controller
@@ -19,9 +19,9 @@ public class SalespersonAddAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private SalespersonOpService salespersonManage;
+	private SalespersonManageService salespersonManage;
 	@Autowired
-	private StoreOpService storeManage;
+	private StoreManageService storeManage;
 
 	public String execute(){
 		if(session.get("userId")!=null){

@@ -20,7 +20,7 @@
         <ul class="lavaLampWithImage" id="lava_menu">
           <li><a href="<%=path%>/jsp/storeManager/home.jsp">首页</a></li>
           <li class="current"><a href="<%=path%>/Dessert/schedulemessage">批准销售计划</a></li>
-          <li><a href="">店铺情况统计</a></li>
+          <li><a href="<%=path%>/jsp/storeManager/memberConditionDis.jsp">店铺情况统计</a></li>
           <li><a href="<%=path%>/Dessert/userlogout">登出</a></li>
         </ul>
       </nav>
@@ -63,7 +63,7 @@
 		  	  <td><jsp:getProperty name="store" property="storeId" /></td>
 		      <td><jsp:getProperty name="item" property="startTime" /></td>
 		      <td><jsp:getProperty name="item" property="endTime" /></td>
-		      <td><jsp:getProperty name="item" property="scheduleState" /></td>
+		      <td>审批通过</td>
 			  <td>
 		      	<input class="submit" type="button" name="checkSchedule" value="查看"
 		      		onclick="checkRow('<jsp:getProperty name="item" property="scheduleId" />')" />
@@ -86,7 +86,7 @@
 		  	  <td><jsp:getProperty name="store" property="storeId" /></td>
 		      <td><jsp:getProperty name="item" property="startTime" /></td>
 		      <td><jsp:getProperty name="item" property="endTime" /></td>
-		      <td><jsp:getProperty name="item" property="scheduleState" /></td>
+		      <td>审批未通过</td>
 			  <td>
 		      	<input class="submit" type="button" name="checkSchedule" value="查看"
 		      		onclick="checkRow('<jsp:getProperty name="item" property="scheduleId" />')" />

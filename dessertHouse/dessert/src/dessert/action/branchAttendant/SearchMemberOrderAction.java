@@ -41,8 +41,7 @@ public class SearchMemberOrderAction extends BaseAction{
 			}
 			String memberId = request.getParameter("memberId");
 			Member m = memberManage.checkMemberInfo(memberId);
-			if(m!=null){
-				
+			if(m!=null&&m.getCardState()==FormulationNumber.cardActive){
 				ArrayList<Order> orderMade = orderManage.findTodaysOrderForMember(m.getMemberId(), store.getStoreId(), FormulationNumber.orderMade);
 				if(orderMade!=null&&orderMade.size()>0){
 					ListBean orderMadeBean = new ListBean();

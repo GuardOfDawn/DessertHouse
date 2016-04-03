@@ -12,7 +12,7 @@ import dessert.models.ScheduleDetail;
 import dessert.models.Store;
 import dessert.models.WeekSchedule;
 import dessert.remoteService.scheduleManage.ScheduleManageService;
-import dessert.service.storeOperation.StoreOpService;
+import dessert.remoteService.storeManage.StoreManageService;
 import dessert.utility.DayTransformer;
 import dessert.utility.IDProducer;
 
@@ -25,7 +25,7 @@ public class ScheduleAddAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private StoreOpService storeManage;
+	private StoreManageService storeManage;
 	
 	@Autowired
 	private ScheduleManageService scheduleManage;
@@ -60,6 +60,7 @@ public class ScheduleAddAction extends BaseAction{
 				detail.setProductId(scheduleDetail[1]);
 				detail.setSellingPrice(Double.parseDouble(scheduleDetail[2]));
 				detail.setSellingCount(Integer.parseInt(scheduleDetail[3]));
+				detail.setRemainingCount(Integer.parseInt(scheduleDetail[3]));
 				detail.setWeekSchedule(weekSchedule);
 				scheduleManage.addScheduleDetail(detail);
 			}

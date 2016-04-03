@@ -45,6 +45,41 @@ public class BillDaoImpl implements BillDao{
 		return (ArrayList<Bill>) list;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Bill> findBillByStore(String storeId,Date startDate,Date endDate){
+		session = baseDao.getNewSession();
+		Query query = session.createQuery("select b from Bill b "
+						+ "where b.billStore.storeId=? and b.billTime>=? and b.billTime<?");
+		query.setString(0, storeId);
+		query.setDate(1, startDate);
+		query.setDate(2, endDate);
+		List list = query.list();
+		return (ArrayList<Bill>) list;
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<BillDetail> findBillDetailByStore(String storeId,Date startDate,Date endDate){
+		session = baseDao.getNewSession();
+		Query query = session.createQuery("select bd from BillDetail bd "
+						+ "where bd.bill.billStore.storeId=? and bd.bill.billTime>=? and bd.bill.billTime<?");
+		query.setString(0, storeId);
+		query.setDate(1, startDate);
+		query.setDate(2, endDate);
+		List list = query.list();
+		return (ArrayList<BillDetail>) list;
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<BillDetail> findBillDetailAll(Date startDate,Date endDate){
+		session = baseDao.getNewSession();
+		Query query = session.createQuery("select bd from BillDetail bd "
+						+ "where bd.bill.billTime>=? and bd.bill.billTime<?");
+		query.setDate(0, startDate);
+		query.setDate(1, endDate);
+		List list = query.list();
+		return (ArrayList<BillDetail>) list;
+	}
+
 	public boolean saveBill(Bill bill) {
 		try {
 			baseDao.save(bill);

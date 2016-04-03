@@ -50,14 +50,15 @@ public class MemberDaoImpl implements MemberDao{
 						.append(" and ");
 				}
 			}
-			ql.delete(ql.length()-5, ql.length());
+			ql.append("m.memberId<>?");
 			session = baseDao.getNewSession();
 			Query query = session.createQuery(ql.toString());
 			for(int i=0;i<values.length;i++){
 				query.setString(i, values[i]);
 			}
+			query.setString(values.length, "0000000");
 			List list = query.list();
-			session.close();
+//			session.close();
 			return (ArrayList<Member>) list;
 		}
 		else{
@@ -68,9 +69,10 @@ public class MemberDaoImpl implements MemberDao{
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ArrayList<Member> findAll(){
 		session = baseDao.getNewSession();
-		Query query = session.createQuery("select m from Member m");
+		Query query = session.createQuery("select m from Member m where m.memberId<>?");
+		query.setString(0, "0000000");
 		List list = query.list();
-		session.close();
+//		session.close();
 		return (ArrayList<Member>) list;
 	}
 

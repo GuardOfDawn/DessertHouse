@@ -22,6 +22,7 @@ public class ScheduleDetail implements Serializable{
 	private String productId;
 	private double sellingPrice;
 	private int sellingCount;
+	private int remainingCount;
 	
 	@Id
 	public String getScheduleDetailId() {
@@ -70,6 +71,14 @@ public class ScheduleDetail implements Serializable{
 	}
 	public void setSellingCount(int sellingCount) {
 		this.sellingCount = sellingCount;
+	}
+
+	@Column
+	public int getRemainingCount() {
+		return remainingCount;
+	}
+	public void setRemainingCount(int remainingCount) {
+		this.remainingCount = remainingCount;
 	}
 	
 

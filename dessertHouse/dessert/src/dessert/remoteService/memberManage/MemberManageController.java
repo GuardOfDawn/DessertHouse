@@ -130,7 +130,7 @@ public class MemberManageController implements MemberManageService{
 		ArrayList<Member> res = memberDao.find(columns, values);
 		if((res!=null)&&(res.size()==1)){
 			Member m = res.get(0);
-			if(m.getCardState()==FormulationNumber.cardStop){
+			if(m.getCardState()==FormulationNumber.cardStop||m.getCardState()==FormulationNumber.cardWithdraw){
 				return false;
 			}
 			if(m.getCardState()==0){
@@ -248,7 +248,7 @@ public class MemberManageController implements MemberManageService{
 		Member m = memberDao.find(memberId);
 		if(m.getCardState()==FormulationNumber.cardInActive){
 			//set card state to stop
-			m.setCardState(FormulationNumber.cardStop);
+			m.setCardState(FormulationNumber.cardWithdraw);
 			if(m.getBankCardId()!=null){
 				m.setBankCardId(null);
 			}
@@ -263,7 +263,7 @@ public class MemberManageController implements MemberManageService{
 			//remove band of bank card
 			m.setBankCardId(null);
 			//set card state to stop
-			m.setCardState(FormulationNumber.cardStop);
+			m.setCardState(FormulationNumber.cardWithdraw);
 		}
 		memberDao.updateMember(m);
 	}

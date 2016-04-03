@@ -15,6 +15,8 @@ public interface ProductDao {
 	public ArrayList<Product> findProduct(String[] columns,String[] values);
 	
 	public ArrayList<Product> findAllProduct();
+
+	public ArrayList<String> findAllProductId();
 	
 	public boolean updateProduct(Product product);
 	

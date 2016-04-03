@@ -93,7 +93,7 @@ public class StoreDaoImpl implements StoreDao{
 		session = baseDao.getNewSession();
 		Query query = session.createQuery("select s from Store s");
 		List list = query.list();
-		session.close();
+//		session.close();
 		return (ArrayList<Store>) list;
 	}
 

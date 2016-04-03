@@ -1,11 +1,14 @@
 package dessert.action.headAttendant;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import dessert.action.BaseAction;
+import dessert.business.ListBean;
 import dessert.models.Product;
-import dessert.service.productOperation.ProductOpService;
+import dessert.remoteService.productManage.ProductManageService;
 import dessert.utility.IDProducer;
 
 @Controller
@@ -17,8 +20,9 @@ public class ProductAddAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private ProductOpService productManage;
+	private ProductManageService productManage;
 	
+	@SuppressWarnings("unchecked")
 	public String execute(){
 		if(session.get("userId")!=null){
 			Product newProduct = new Product();
@@ -30,6 +34,10 @@ public class ProductAddAction extends BaseAction{
 			newProduct.setImagePath(imagePath);
 			productManage.addProduct(newProduct);
 			request.setAttribute("newProduct", newProduct);
+			ArrayList<Product> productList = productManage.getAllProduct();
+			ListBean productListBean = new ListBean();
+			productListBean.setListBean(productList);
+			session.put("productList", productListBean);
 			return SUCCESS;
 			
 //			String uploadPath = request.getSession().getServletContext().getRealPath("/")+"upload/images/";

@@ -10,7 +10,7 @@ public class ProductExtend implements Serializable{
 	private String productType;
 	private String imagePath;
 	private double sellingPrice;
-	private int sellingCount;
+	private int remainingCount;
 	
 	public String getProductId() {
 		return productId;
@@ -42,11 +42,11 @@ public class ProductExtend implements Serializable{
 	public void setSellingPrice(double sellingPrice) {
 		this.sellingPrice = sellingPrice;
 	}
-	public int getSellingCount() {
-		return sellingCount;
+	public int getRemainingCount() {
+		return remainingCount;
 	}
-	public void setSellingCount(int sellingCount) {
-		this.sellingCount = sellingCount;
+	public void setRemainingCount(int remainingCount) {
+		this.remainingCount = remainingCount;
 	}
 	
 }

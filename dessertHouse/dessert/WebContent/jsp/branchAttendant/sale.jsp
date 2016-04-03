@@ -23,7 +23,7 @@
           <li class="current"><a href="<%=path%>/Dessert/sale">处理销售</a></li>
           <li><a href="<%=path%>/jsp/branchAttendant/dealOrder.jsp">处理预订</a></li>
           <li><a href="<%=path%>/Dessert/membercheck">会员查看</a></li>
-          <li><a href="">店铺信息</a></li>
+          <li><a href="<%=path%>/jsp/branchAttendant/storeInfo.jsp">店铺信息</a></li>
           <li><a href="<%=path%>/Dessert/userlogout">登出</a></li>
         </ul>
       </nav>
@@ -168,12 +168,12 @@
 			<p id="nameFor<jsp:getProperty name="item" property="productId" />" style="height:10px"><jsp:getProperty name="item" property="productName" /></p>
 			<p id="typeFor<jsp:getProperty name="item" property="productId" />" style="height:10px">类型：<jsp:getProperty name="item" property="productType" /></p>
 			<p id="priceFor<jsp:getProperty name="item" property="productId" />" style="height:10px">售价：<jsp:getProperty name="item" property="sellingPrice" /></p>
-			<p id="sellingCountFor<jsp:getProperty name="item" property="productId" />" style="height:10px">数量：<jsp:getProperty name="item" property="sellingCount" /></p>
+			<p id="sellingCountFor<jsp:getProperty name="item" property="productId" />" style="height:10px">数量：<jsp:getProperty name="item" property="remainingCount" /></p>
 		    <p></p>
 		  	  <div style="float:right;margin-right:80px;">
 		  	    <a id="deleteOneFor<jsp:getProperty name="item" property="productId" />" href="javascript:deleteOne('<jsp:getProperty name="item" property="productId" />Count','<jsp:getProperty name="item" property="productId" />')" style="width:25px;height:25px;text-decoration:none;text-align:center;line-height:20px;background-color:#D9D6CF;display:inline-block;cursor:not-allowed;" ><b>—</b></a>
-		  	    <input id="<jsp:getProperty name="item" property="productId" />Count" type="text" value="1" style="width:28px;" onblur="checkCount('<jsp:getProperty name="item" property="productId" />Count','<jsp:getProperty name="item" property="productId" />','<jsp:getProperty name="item" property="sellingCount" />')">
-		  	    <a id="addOneFor<jsp:getProperty name="item" property="productId" />" href="javascript:addOne('<jsp:getProperty name="item" property="productId" />Count','<jsp:getProperty name="item" property="productId" />','<jsp:getProperty name="item" property="sellingCount" />')" style="width:25px;height:25px;text-decoration:none;text-align:center;line-height:20px;background-color:#D9D6CF;display:inline-block;" ><b>＋</b></a>
+		  	    <input id="<jsp:getProperty name="item" property="productId" />Count" type="text" value="1" style="width:28px;" onblur="checkCount('<jsp:getProperty name="item" property="productId" />Count','<jsp:getProperty name="item" property="productId" />','<jsp:getProperty name="item" property="remainingCount" />')">
+		  	    <a id="addOneFor<jsp:getProperty name="item" property="productId" />" href="javascript:addOne('<jsp:getProperty name="item" property="productId" />Count','<jsp:getProperty name="item" property="productId" />','<jsp:getProperty name="item" property="remainingCount" />')" style="width:25px;height:25px;text-decoration:none;text-align:center;line-height:20px;background-color:#D9D6CF;display:inline-block;" ><b>＋</b></a>
 		  	  </div>
 		  	  <input class="submit" type="button" value="销售" onclick="orderProduct('<jsp:getProperty name="item" property="productId" />')" style="float:right;margin-right:20px;margin-top:-28px;font-size:15px;width:50px"/>
 		    <p></p>

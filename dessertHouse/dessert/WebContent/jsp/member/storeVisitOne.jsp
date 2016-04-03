@@ -12,6 +12,9 @@
   <link rel="stylesheet" type="text/css" href="<%=path %>/css/style.css" />
   <!-- modernizr enables HTML5 elements and feature detects -->
   <script type="text/javascript" src="<%=path %>/js/modernizr-1.5.min.js"></script>
+  <script type="text/javascript" src="<%=path %>/calc/calendar.js"></script>
+  <script type="text/javascript" src="<%=path %>/calc/calendar-en.js"></script>
+  <link type="text/css" rel="stylesheet" href="<%=path %>/calc/calendar-system.css"/>
 </head>
 <body>
   <div id="main">
@@ -54,7 +57,20 @@
 			scope="page"></jsp:useBean>
 		<div>
 		  <h2 align="center">Welcome to <jsp:getProperty name="store" property="storeName" />!</h2>
-		  <p id="storeId" style="display:none"><jsp:getProperty name="store" property="storeId" /></p>
+		  </div>
+		<div class="form_settings">
+		  <span style="margin-left:120px">选择预订日期：</span>
+		  <%if(request.getAttribute("targetDate")!=null){ %>
+		  <input type="text" id="mydate" size="12" value="<%=request.getAttribute("targetDate") %>" onclick="calShow('mydate');" onfocus="calShow('mydate');" readonly="readonly" style="width:80px;margin-left:-50px;">
+          <%}
+		    else{%>
+		    <input type="text" id="mydate" size="12" value="选择日期" onclick="calShow('mydate');" onfocus="calShow('mydate');" readonly="readonly" style="width:80px;margin-left:-50px;">
+          <%} %>
+          <input class="submit" type="button" value="查找产品" onclick="retrieveProductInfo()"/>
+		  <input id="storeId" style="display:none" value="<jsp:getProperty name="store" property="storeId" />" />
+		</div>
+		<div>
+		  <p id="targetDateAlert" ></p>
 		</div>
 		<%if(sellingProductToday.getListBean()!=null&&sellingProductToday.getListBean().size()!=0){
 		      for(int i=0;i<sellingProductToday.getListBean().size();i++){ 
@@ -67,13 +83,13 @@
 			<p id="nameFor<jsp:getProperty name="item" property="productId" />" style="height:10px"><jsp:getProperty name="item" property="productName" /></p>
 			<p id="typeFor<jsp:getProperty name="item" property="productId" />" style="height:10px">类型：<jsp:getProperty name="item" property="productType" /></p>
 			<p id="priceFor<jsp:getProperty name="item" property="productId" />" style="height:10px">售价：<jsp:getProperty name="item" property="sellingPrice" /></p>
-			<p id="sellingCountFor<jsp:getProperty name="item" property="productId" />" style="height:10px">数量：<jsp:getProperty name="item" property="sellingCount" /></p>
+			<p id="sellingCountFor<jsp:getProperty name="item" property="productId" />" style="height:10px">数量：<jsp:getProperty name="item" property="remainingCount" /></p>
 		  <%if(session.getAttribute("member")!=null){ %>
 		    <p></p>
 		  	  <div style="float:right;margin-right:80px;">
 		  	    <a id="deleteOneFor<jsp:getProperty name="item" property="productId" />" href="javascript:deleteOne('<jsp:getProperty name="item" property="productId" />Count','<jsp:getProperty name="item" property="productId" />')" style="width:25px;height:25px;text-decoration:none;text-align:center;line-height:20px;background-color:#D9D6CF;display:inline-block;cursor:not-allowed;" ><b>—</b></a>
-		  	    <input id="<jsp:getProperty name="item" property="productId" />Count" type="text" value="1" style="width:28px;" onblur="checkCount('<jsp:getProperty name="item" property="productId" />Count','<jsp:getProperty name="item" property="productId" />','<jsp:getProperty name="item" property="sellingCount" />')">
-		  	    <a id="addOneFor<jsp:getProperty name="item" property="productId" />" href="javascript:addOne('<jsp:getProperty name="item" property="productId" />Count','<jsp:getProperty name="item" property="productId" />','<jsp:getProperty name="item" property="sellingCount" />')" style="width:25px;height:25px;text-decoration:none;text-align:center;line-height:20px;background-color:#D9D6CF;display:inline-block;" ><b>＋</b></a>
+		  	    <input id="<jsp:getProperty name="item" property="productId" />Count" type="text" value="1" style="width:28px;" onblur="checkCount('<jsp:getProperty name="item" property="productId" />Count','<jsp:getProperty name="item" property="productId" />','<jsp:getProperty name="item" property="remainingCount" />')">
+		  	    <a id="addOneFor<jsp:getProperty name="item" property="productId" />" href="javascript:addOne('<jsp:getProperty name="item" property="productId" />Count','<jsp:getProperty name="item" property="productId" />','<jsp:getProperty name="item" property="remainingCount" />')" style="width:25px;height:25px;text-decoration:none;text-align:center;line-height:20px;background-color:#D9D6CF;display:inline-block;" ><b>＋</b></a>
 		  	  </div>
 		  	  <input class="submit" type="button" value="预订" onclick="orderProduct('<jsp:getProperty name="item" property="productId" />')" style="float:right;margin-right:20px;margin-top:-28px;font-size:15px;width:50px"/>
 		    <p></p>
@@ -111,6 +127,28 @@
     });
   </script>
   <script type="text/javascript">
+    function retrieveProductInfo(){
+    	document.getElementById("targetDateAlert").innerHTML = "";
+    	var curDate = new Date();
+    	var year = curDate.getFullYear();
+    	var month = curDate.getMonth()+1;
+    	var day = curDate.getDate();
+    	var dateInput = document.getElementById("mydate").value;
+    	if(dateInput!="选择日期"){
+	    	var parts = dateInput.split("-");
+	    	var cha=Date.parse(month+'/'+day+'/'+year)-Date.parse(parts[1]+'/'+parts[2]+'/'+parts[0]);
+	    	if(cha>0){
+	    		document.getElementById("targetDateAlert").innerHTML = "不能预订过去的产品！";
+	    	}
+	    	else if(cha==0){
+	    		document.getElementById("targetDateAlert").innerHTML = "现在显示的已经是当天的产品啦！";
+	    	}
+	    	else{
+	        	var storeId = document.getElementById("storeId").value;
+	        	window.location.href='<%=path%>/Dessert/storevisitone?targetDate='+dateInput+'&storeId='+storeId;
+	    	}
+    	}
+    }
     function visitOneProduct(productId){
     	
     }
@@ -244,8 +282,16 @@
     		order += ";";
     	}
     	order=order.substring(0,order.length-1);
-    	var storeId = document.getElementById("storeId").innerHTML;
-    	window.location.href='<%=path%>/Dessert/orderproduct?order='+order+'&storeId='+storeId;
+    	var storeId = document.getElementById("storeId").value;
+    	var targetDate = document.getElementById("mydate").value;
+    	if(targetDate=="选择日期"){
+    		var curDate = new Date();
+        	var year = curDate.getFullYear();
+        	var month = curDate.getMonth()+1;
+        	var day = curDate.getDate();
+    		targetDate = year+'-'+month+'-'+day;
+    	}
+    	window.location.href='<%=path%>/Dessert/orderproduct?order='+order+'&storeId='+storeId+'&targetDate='+targetDate;
     }
   </script>
   <script language="JavaScript"> 

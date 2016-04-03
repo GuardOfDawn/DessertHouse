@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//WebContent/jsp/branchAttendant/dealOrder.jsp=UTF-8
 encoding//WebContent/jsp/branchAttendant/sale.jsp=UTF-8
+encoding//WebContent/jsp/branchAttendant/storeInfo.jsp=UTF-8
 encoding//WebContent/jsp/headAttendant/home.jsp=UTF-8
 encoding//WebContent/jsp/headAttendant/modifyProduct.jsp=UTF-8
 encoding//WebContent/jsp/member/memberRegister.jsp=UTF-8

@@ -21,13 +21,15 @@ import javax.persistence.Table;
 public class Order implements Serializable{
 	private String orderId;
 	private Date orderTime;
+	private Date targetDay;
 	private Member orderMember;
 	private Store orderStore;
 	private double orderCost;
 	private double favorRate;
 	private int bonusUsed;
 	private double costAfterDiscount;
-	private int orderState;//0-unpaid;1-paid;2-cancel
+	private int orderState;//0-unpaid;1-paid;2-cancel;3-overdue
+	private int bonusGiven;
 	private Set<OrderDetail> itemList;
 	
 	
@@ -45,6 +47,14 @@ public class Order implements Serializable{
 	}
 	public void setOrderTime(Date orderTime) {
 		this.orderTime = orderTime;
+	}
+	
+	@Column
+	public Date getTargetDay() {
+		return targetDay;
+	}
+	public void setTargetDay(Date targetDay) {
+		this.targetDay = targetDay;
 	}
 
 	@ManyToOne(cascade=CascadeType.ALL, optional=false)
@@ -103,6 +113,14 @@ public class Order implements Serializable{
 	}
 	public void setOrderState(int orderState) {
 		this.orderState = orderState;
+	}
+
+	@Column
+	public int getBonusGiven() {
+		return bonusGiven;
+	}
+	public void setBonusGiven(int bonusGiven) {
+		this.bonusGiven = bonusGiven;
 	}
 	
 	@OneToMany(mappedBy="order", cascade=CascadeType.ALL, fetch=FetchType.LAZY)

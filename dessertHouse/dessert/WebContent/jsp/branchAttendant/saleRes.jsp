@@ -24,7 +24,7 @@
           <li class="current"><a href="<%=path%>/Dessert/sale">处理销售</a></li>
           <li><a href="<%=path%>/jsp/branchAttendant/dealOrder.jsp">处理预订</a></li>
           <li><a href="<%=path%>/Dessert/membercheck">会员查看</a></li>
-          <li><a href="">店铺信息</a></li>
+          <li><a href="<%=path%>/jsp/branchAttendant/storeInfo.jsp">店铺信息</a></li>
           <li><a href="<%=path%>/Dessert/userlogout">登出</a></li>
         </ul>
       </nav>

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 
 import dessert.action.BaseAction;
 import dessert.models.Store;
-import dessert.service.storeOperation.StoreOpService;
+import dessert.remoteService.storeManage.StoreManageService;
 import dessert.utility.IDProducer;
 
 @Controller
@@ -17,7 +17,7 @@ public class StoreAddAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private StoreOpService storeManage;
+	private StoreManageService storeManage;
 
 	private Store store;
 	
@@ -30,6 +30,9 @@ public class StoreAddAction extends BaseAction{
 			newStore.setProvince(String.valueOf(request.getParameter("province")));
 			newStore.setCity(String.valueOf(request.getParameter("city")));
 			newStore.setStoreLoc(String.valueOf(request.getParameter("storeLoc")));
+			String imageName = (request.getParameter("imagePath")==null)?"default.jpg":request.getParameter("imagePath");
+			String imagePath = "/upload/" + imageName;
+			newStore.setImagePath(imagePath);
 			storeManage.addStore(newStore);
 			request.setAttribute("newStore", newStore);
 			return SUCCESS;

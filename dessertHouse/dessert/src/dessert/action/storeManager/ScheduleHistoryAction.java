@@ -36,7 +36,7 @@ public class ScheduleHistoryAction extends BaseAction{
 				//get disapproved schedule
 				ArrayList<WeekSchedule> disapprovedScheduleList = scheduleManage.retrieveDisapprovedSchedule();
 				ListBean disapprovedScheduleBean = new ListBean();
-				approvedScheduleBean.setListBean(disapprovedScheduleList);
+				disapprovedScheduleBean.setListBean(disapprovedScheduleList);
 				session.put("disapprovedSchedule", disapprovedScheduleBean);
 				return SUCCESS;
 			}

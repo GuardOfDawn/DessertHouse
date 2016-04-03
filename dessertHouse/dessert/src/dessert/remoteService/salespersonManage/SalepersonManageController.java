@@ -34,7 +34,7 @@ public class SalepersonManageController implements SalespersonManageService{
 		StoreUser user = new StoreUser();
 		user.setUserId(salesperson.getSalespersonId());
 		user.setUserName(salesperson.getSalespersonName());
-		String userType = (salesperson.getSalespersonLevel()==0)?"HeadAttendent":"BranchAttendent";
+		String userType = (salesperson.getSalespersonLevel()==0)?"HeadAttendant":"BranchAttendant";
 		user.setUserType(userType);
 		user.setPassword("1234");
 		storeUserDao.save(user);

@@ -13,8 +13,8 @@ import dessert.models.OrderDetail;
 import dessert.models.Product;
 import dessert.models.Store;
 import dessert.remoteService.orderManage.OrderManageService;
-import dessert.service.productOperation.ProductOpService;
-import dessert.service.storeOperation.StoreOpService;
+import dessert.remoteService.productManage.ProductManageService;
+import dessert.remoteService.storeManage.StoreManageService;
 import dessert.utility.FormulationNumber;
 import dessert.utility.MemberLevelUtility;
 
@@ -27,9 +27,9 @@ public class OrderProductAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private ProductOpService productManage;
+	private ProductManageService productManage;
 	@Autowired
-	private StoreOpService storeManage;
+	private StoreManageService storeManage;
 	@Autowired
 	private OrderManageService orderManage;
 	
@@ -43,7 +43,7 @@ public class OrderProductAction extends BaseAction{
 			for(String orderItemString:orderListString){
 				String[] parts = orderItemString.split(",");
 				OrderDetail item = new OrderDetail();
-				Product p = productManage.getProductInfo(parts[0]);
+				Product p = productManage.findProduct(parts[0]);
 				item.setProduct(p);
 				item.setProductPrice(Double.parseDouble(parts[1]));
 				item.setProductCount(Integer.parseInt(parts[2]));
@@ -62,6 +62,7 @@ public class OrderProductAction extends BaseAction{
 				ListBean orderItemListBean = new ListBean();
 				orderItemListBean.setListBean(orderItemList);
 				session.put("orderItemList", orderItemListBean);
+				request.setAttribute("targetDate", request.getParameter("targetDate"));
 				double favorRate = MemberLevelUtility.getInstance().getFavorRate(m.getMemberLevel());
 				request.setAttribute("favorRate", Double.valueOf(favorRate));
 				String storeId = request.getParameter("storeId");

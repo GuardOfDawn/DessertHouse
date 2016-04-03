@@ -166,6 +166,16 @@
 		
 		</action>
 		
+		<action name="scheduleresubmit" class="ScheduleResubmitAction">
+			
+			<result name="success">/jsp/headAttendant/currentSchedule.jsp</result>
+			
+			<result name="failure">/jsp/headAttendant/currentSchedule.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
 		<action name="schedulemessage" class="ScheduleMessageAction">
 			
 			<result name="success">/jsp/storeManager/scheduleMessage.jsp</result>
@@ -187,6 +197,16 @@
 		</action>
 		
 		<action name="scheduleapprove" class="ScheduleApproveAction">
+			
+			<result name="success">/jsp/storeManager/scheduleMessage.jsp</result>
+			
+			<result name="failure">/jsp/storeManager/scheduleMessage.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+		
+		</action>
+		
+		<action name="scheduledisapprove" class="ScheduleDisapproveAction">
 			
 			<result name="success">/jsp/storeManager/scheduleMessage.jsp</result>
 			
@@ -334,6 +354,14 @@
 			
 		</action>
 		
+		<action name="ordercancel" class="OrderCancelAction">
+			
+			<result name="success">/jsp/member/orderView.jsp</result>
+			
+			<result name="input">/jsp/member/memberLogin.jsp</result>
+			
+		</action>
+		
 		<action name="rechargeview" class="RechargeViewAction">
 			
 			<result name="success">/jsp/member/rechargeView.jsp</result>
@@ -388,6 +416,16 @@
 			
 		</action>
 		
+		<action name="payorder" class="PayOrderAction">
+			
+			<result name="success">/jsp/branchAttendant/dealOrder.jsp</result>
+			
+			<result name="failure">/jsp/branchAttendant/dealOrder.jsp</result>
+			
+			<result name="input">/jsp/userLogin.jsp</result>
+			
+		</action>
+		
 		<action name="membercheck" class="MemberCheckAction">
 			
 			<result name="success">/jsp/branchAttendant/memberCheck.jsp</result>
@@ -412,10 +450,75 @@
 			
 		</action>
 		
-
 	</package>
 	
-	
+	<package name="jfreechartPackage" extends="jfreechart-default" namespace="/">
+  
+ 		<action name="memberage" class="MemberAgeAction">
+  			<result name="success" type="chart">
+   				<param name="width">500</param>
+   				<param name="height">400</param>
+  			</result>
+			<result name="input">/jsp/userLogin.jsp</result>
+ 		</action>
+ 		
+ 		<action name="membergender" class="MemberGenderAction">
+  			<result name="success" type="chart">
+   				<param name="width">500</param>
+   				<param name="height">400</param>
+  			</result>
+			<result name="input">/jsp/userLogin.jsp</result>
+ 		</action>
+ 		
+ 		<action name="membercard" class="MemberCardAction">
+  			<result name="success" type="chart">
+   				<param name="width">500</param>
+   				<param name="height">400</param>
+  			</result>
+			<result name="input">/jsp/userLogin.jsp</result>
+ 		</action>
+ 		
+ 		<action name="memberconsume" class="MemberConsumeAction">
+  			<result name="success" type="chart">
+   				<param name="width">500</param>
+   				<param name="height">400</param>
+  			</result>
+			<result name="input">/jsp/userLogin.jsp</result>
+ 		</action>
+ 		
+ 		<action name="memberresidual" class="MemberResidualAction">
+  			<result name="success" type="chart">
+   				<param name="width">500</param>
+   				<param name="height">400</param>
+  			</result>
+			<result name="input">/jsp/userLogin.jsp</result>
+ 		</action>
+ 		
+ 		<action name="storeselling" class="StoreSellingAction">
+  			<result name="success" type="chart">
+   				<param name="width">500</param>
+   				<param name="height">400</param>
+  			</result>
+			<result name="input">/jsp/userLogin.jsp</result>
+ 		</action>
+ 		
+ 		<action name="storeordering" class="StoreOrderingAction">
+  			<result name="success" type="chart">
+   				<param name="width">500</param>
+   				<param name="height">400</param>
+  			</result>
+			<result name="input">/jsp/userLogin.jsp</result>
+ 		</action>
+ 		
+ 		<action name="popularproduct" class="PopularProductAction">
+  			<result name="success" type="chart">
+   				<param name="width">500</param>
+   				<param name="height">400</param>
+  			</result>
+			<result name="input">/jsp/userLogin.jsp</result>
+ 		</action>
+ 		
+ 	</package>
 
 </struts>
 

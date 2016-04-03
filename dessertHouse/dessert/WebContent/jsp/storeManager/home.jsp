@@ -20,7 +20,7 @@
         <ul class="lavaLampWithImage" id="lava_menu">
           <li class="current"><a href="<%=path%>/jsp/storeManager/home.jsp">首页</a></li>
           <li><a href="<%=path%>/Dessert/schedulemessage">批准销售计划</a></li>
-          <li><a href="">店铺情况统计</a></li>
+          <li><a href="<%=path%>/jsp/storeManager/memberConditionDis.jsp">店铺情况统计</a></li>
           <li><a href="<%=path%>/Dessert/userlogout">登出</a></li>
         </ul>
       </nav>

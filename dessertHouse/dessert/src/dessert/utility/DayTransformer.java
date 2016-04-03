@@ -12,6 +12,12 @@ public class DayTransformer {
 		String str = formatter.format(dateTime);
 		return str;
 	}
+	
+	public static String transformToMonth(Date dateTime){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");// HH:mm:ss
+		String str = formatter.format(dateTime);
+		return str;
+	}
 
 	public static Date transform(String dateString){
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -29,6 +35,15 @@ public class DayTransformer {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		calendar.add(Calendar.DAY_OF_MONTH, day);
+		Date newDate = new Date(calendar.getTimeInMillis());
+		return newDate;
+	}
+	
+	public static Date getNewMonth(Date date,int month){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.add(Calendar.MONTH, month);
 		Date newDate = new Date(calendar.getTimeInMillis());
 		return newDate;
 	}

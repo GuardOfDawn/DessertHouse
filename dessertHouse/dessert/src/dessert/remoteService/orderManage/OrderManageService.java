@@ -19,4 +19,6 @@ public interface OrderManageService {
 	
 	public void orderPayed(String orderId);
 	
+	public void orderCancelled(String orderId);
+	
 }

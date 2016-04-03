@@ -176,4 +176,15 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return true;
 	}
 
+	public boolean updateScheduleDetail(ScheduleDetail scheduleDetail){
+		try{
+			baseDao.update(scheduleDetail);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
 }

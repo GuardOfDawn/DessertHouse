@@ -99,6 +99,9 @@
 	<bean id="ScheduleDeleteAction" class="dessert.action.headAttendant.ScheduleDeleteAction">
 	</bean>
 	
+	<bean id="ScheduleResubmitAction" class="dessert.action.headAttendant.ScheduleResubmitAction">
+	</bean>
+	
 	<bean id="ScheduleMessageAction" class="dessert.action.storeManager.ScheduleMessageAction">
 	</bean>
 	
@@ -106,6 +109,9 @@
 	</bean>
 	
 	<bean id="ScheduleApproveAction" class="dessert.action.storeManager.ScheduleApproveAction">
+	</bean>
+	
+	<bean id="ScheduleDisapproveAction" class="dessert.action.storeManager.ScheduleDisapproveAction">
 	</bean>
 	
 	<bean id="MemberLoginAction" class="dessert.action.member.MemberLoginAction">
@@ -153,6 +159,9 @@
 	<bean id="OrderViewAction" class="dessert.action.memberOrder.OrderViewAction">
 	</bean>
 	
+	<bean id="OrderCancelAction" class="dessert.action.memberOrder.OrderCancelAction">
+	</bean>
+	
 	<bean id="RechargeViewAction" class="dessert.action.memberOrder.RechargeViewAction">
 	</bean>
 	
@@ -171,6 +180,9 @@
 	<bean id="SearchMemberOrderAction" class="dessert.action.branchAttendant.SearchMemberOrderAction">
 	</bean>
 	
+	<bean id="PayOrderAction" class="dessert.action.branchAttendant.PayOrderAction">
+	</bean>
+	
 	<bean id="MemberCheckAction" class="dessert.action.branchAttendant.MemberCheckAction">
 	</bean>
 	
@@ -180,6 +192,29 @@
 	<bean id="RechargeCheckAction" class="dessert.action.branchAttendant.RechargeCheckAction">
 	</bean>
 	
+	<bean id="MemberAgeAction" class="dessert.action.storeManager.MemberAgeAction">
+	</bean>
+	
+	<bean id="MemberGenderAction" class="dessert.action.storeManager.MemberGenderAction">
+	</bean>
+	
+	<bean id="MemberCardAction" class="dessert.action.storeManager.MemberCardAction">
+	</bean>
+	
+	<bean id="MemberConsumeAction" class="dessert.action.storeManager.MemberConsumeAction">
+	</bean>
+	
+	<bean id="MemberResidualAction" class="dessert.action.storeManager.MemberResidualAction">
+	</bean>
+	
+	<bean id="StoreSellingAction" class="dessert.action.storeManager.StoreSellingAction">
+	</bean>
+	
+	<bean id="StoreOrderingAction" class="dessert.action.storeManager.StoreOrderingAction">
+	</bean>
+	
+	<bean id="PopularProductAction" class="dessert.action.storeManager.PopularProductAction">
+	</bean>
 	
 	<!-- 定义 Autowired 自动注入 bean -->
 	<bean

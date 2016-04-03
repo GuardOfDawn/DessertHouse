@@ -32,4 +32,6 @@ public interface ScheduleDao {
 
 	public boolean saveScheduleDetail(ScheduleDetail scheduleDetail);
 
+	public boolean updateScheduleDetail(ScheduleDetail scheduleDetail);
+
 }

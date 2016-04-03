@@ -52,6 +52,7 @@
             <p><span>所在省</span><input type="text" name="province" value="" /></p>
             <p><span>所在市</span><input type="text" name="city" value="" /></p>
             <p><span>店铺地址</span><input type="text" name="storeLoc" value="" /></p>
+            <p><span>店铺图片</span><input type="file" name="imagePath" /></p>
             <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="ensure" value="确认添加"/></p>
           </div>
         </form>
@@ -66,6 +67,8 @@
 	  	<p><span>所在省:</span><jsp:getProperty name="newStore" property="province" /></p>
 	  	<p><span>所在市:</span><jsp:getProperty name="newStore" property="city" /></p>
 	  	<p><span>店铺地址:</span><jsp:getProperty name="newStore" property="storeLoc" /></p>
+	  	<p><span>店铺图片:</span></p>
+	  	<p><img width="140" height="120" src="<%=path %><jsp:getProperty name="newStore" property="imagePath" />"/></p>
 	  	<%} %>
 	  </div>
 	</div>

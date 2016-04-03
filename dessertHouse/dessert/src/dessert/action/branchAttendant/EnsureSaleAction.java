@@ -12,12 +12,16 @@ import dessert.models.Bill;
 import dessert.models.BillDetail;
 import dessert.models.Member;
 import dessert.models.Product;
+import dessert.models.ScheduleDetail;
 import dessert.models.Store;
+import dessert.models.WeekSchedule;
 import dessert.remoteService.memberManage.MemberManageService;
+import dessert.remoteService.productManage.ProductManageService;
 import dessert.remoteService.saleManage.SaleManageService;
-import dessert.service.productOperation.ProductOpService;
-import dessert.service.storeOperation.StoreOpService;
+import dessert.remoteService.scheduleManage.ScheduleManageService;
+import dessert.remoteService.storeManage.StoreManageService;
 import dessert.utility.BonusUtility;
+import dessert.utility.DayTransformer;
 import dessert.utility.FormulationNumber;
 import dessert.utility.IDProducer;
 import dessert.utility.MemberLevelUtility;
@@ -31,13 +35,15 @@ public class EnsureSaleAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	private ProductOpService productManage;
+	private ProductManageService productManage;
 	@Autowired
 	private MemberManageService memberManage;
 	@Autowired
-	private StoreOpService storeManage;
+	private StoreManageService storeManage;
 	@Autowired
 	private SaleManageService saleManage;
+	@Autowired
+	private ScheduleManageService scheduleManage;
 	
 	public String execute(){
 		if(session.get("user")!=null){
@@ -50,7 +56,7 @@ public class EnsureSaleAction extends BaseAction {
 					String[] parts = saleListString[i].split(",");
 					BillDetail item = new BillDetail();
 					String productId = parts[0];
-					Product p = productManage.getProductInfo(productId);
+					Product p = productManage.findProduct(productId);
 					item.setProduct(p);
 					item.setProductPrice(Double.parseDouble(parts[1]));
 					item.setProductCount(Integer.parseInt(parts[2]));
@@ -102,9 +108,21 @@ public class EnsureSaleAction extends BaseAction {
 				}
 				boolean res = saleManage.saveBill(bill);
 				if(res){
+					Date curDate = new Date(System.currentTimeMillis());
+					curDate = DayTransformer.transform(DayTransformer.transform(curDate));
+					WeekSchedule schedule = scheduleManage.retrieveSchedule(store.getStoreId(), curDate);
+					ArrayList<ScheduleDetail> detailList = scheduleManage.retrieveScheduleDetail(schedule.getScheduleId(),curDate);
 					for(BillDetail detail:billItem){
 						detail.setBill(bill);
 						saleManage.saveBillDetail(detail);
+						//modify remaining count
+						for(ScheduleDetail item:detailList){
+							if(item.getProductId().equals(detail.getProduct().getProductId())){
+								item.setRemainingCount(item.getRemainingCount()-detail.getProductCount());
+								scheduleManage.updateScheduleDetail(item);
+								break;
+							}
+						}
 					}
 					if(m!=null){
 						memberManage.modifyRegisterInfo(m);

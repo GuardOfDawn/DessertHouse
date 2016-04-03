@@ -61,6 +61,7 @@
         	<p><span>会员卡号</span><input type="text" name="memberId" readonly="readonly" value="<jsp:getProperty name="member" property="memberId" />" /></p>
             <p><span>会员姓名</span><input type="text" readonly="readonly" value="<jsp:getProperty name="member" property="memberName" />" /></p>
             <p><span>会员等级</span><input type="text" readonly="readonly" value="<jsp:getProperty name="member" property="memberLevel" />级会员" /></p>
+            <p><span>预订日期</span><input type="text" name="targetDate" readonly="readonly" value="<%=request.getAttribute("targetDate") %>" /></p>
             <p style="display:none"><span>店铺编号</span><input type="text" id="storeId" name="storeId" readonly="readonly" value="<jsp:getProperty name="store" property="storeId" />" /></p>
             <p><span>店铺名称</span><input type="text" readonly="readonly" value="<jsp:getProperty name="store" property="storeName" />" /></p>
             <p><span>订单详情</span></p>

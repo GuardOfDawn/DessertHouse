@@ -66,7 +66,7 @@
 		  	  <td><jsp:getProperty name="store" property="storeId" /></td>
 		      <td><jsp:getProperty name="item" property="startTime" /></td>
 		      <td><jsp:getProperty name="item" property="endTime" /></td>
-		      <td><jsp:getProperty name="item" property="scheduleState" /></td>
+		      <td>未审批</td>
 			  <td>
 		      	<input class="submit" type="button" name="checkSchedule" value="查看"
 		      		onclick="checkRow('<jsp:getProperty name="item" property="scheduleId" />')" />
@@ -86,7 +86,7 @@
         
         <h2 align="center">未通过的计划</h2>
         <table id="disapprovedSchedule" style="width:100%; border-spacing:0;">
-		  <tr><th>编号</th><th>店铺</th><th>生效时间</th><th>终止时间</th><th>状态</th><th>查看</th><th>修改</th><th>删除</th></tr>
+		  <tr><th>编号</th><th>店铺</th><th>生效时间</th><th>终止时间</th><th>状态</th><th>修改</th><th>删除</th><th>提交</th></tr>
 		  <%if(disapprovedSchedule.getListBean()!=null){
 		      for(int i=0;i<disapprovedSchedule.getListBean().size();i++){
 				pageContext.setAttribute("item", disapprovedSchedule.getBean(i));
@@ -97,11 +97,7 @@
 		  	  <td><jsp:getProperty name="store" property="storeId" /></td>
 		      <td><jsp:getProperty name="item" property="startTime" /></td>
 		      <td><jsp:getProperty name="item" property="endTime" /></td>
-		      <td><jsp:getProperty name="item" property="scheduleState" /></td>
-			  <td>
-		      	<input class="submit" type="button" name="checkSchedule" value="查看"
-		      		onclick="checkRow('<jsp:getProperty name="item" property="scheduleId" />')" />
-		      </td>
+		      <td>未通过</td>
 		      <td>
 		      	<input class="submit" type="button" name="modifySchedule" value="修改"
 		      		onclick="modifyRow('<jsp:getProperty name="item" property="scheduleId" />')" />
@@ -110,10 +106,19 @@
 		      	<input class="submit" type="button" name="deleteSchedule" value="删除"
 		      		onclick="deleteRow('<jsp:getProperty name="item" property="scheduleId" />')" />
 		      </td>
+			  <td>
+		      	<input class="submit" type="button" name="checkSchedule" value="提交"
+		      		onclick="submitRow('<jsp:getProperty name="item" property="scheduleId" />')" />
+		      </td>
 		  </tr>
 		  <%  }
 		    }%>
 		</table>
+		<p>
+		<%if(request.getAttribute("resubmit")!=null){ %>
+		    销售计划重新提交成功！
+		<%} %>
+		</p>
       
       </div>
       
@@ -158,6 +163,9 @@
 		document.getElementById("lightDeleteSchedule").style.display='block';
 		document.getElementById("deleteScheduleId").value=scheduleId;
     }
+	function submitRow(scheduleId){
+		window.location.href='<%=path%>/Dessert/scheduleresubmit?scheduleTosubmit='+scheduleId;
+	}
 	function cancelDeleteSchedule(){
 		document.getElementById("deleteScheduleId").value='';
 		document.getElementById("lightDeleteSchedule").style.display='none';

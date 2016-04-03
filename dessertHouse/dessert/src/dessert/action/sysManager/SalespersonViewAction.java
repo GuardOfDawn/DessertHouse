@@ -10,8 +10,8 @@ import dessert.business.ListBean;
 import dessert.business.SalespersonListBean;
 import dessert.models.Salesperson;
 import dessert.models.StoreUser;
-import dessert.service.salespersonOperation.SalespersonOpService;
-import dessert.service.storeOperation.StoreOpService;
+import dessert.remoteService.salespersonManage.SalespersonManageService;
+import dessert.remoteService.storeManage.StoreManageService;
 
 @Controller
 public class SalespersonViewAction extends BaseAction{
@@ -22,9 +22,9 @@ public class SalespersonViewAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private SalespersonOpService salespersonManage;
+	private SalespersonManageService salespersonManage;
 	@Autowired
-	private StoreOpService storeManage;
+	private StoreManageService storeManage;
 	
 	@SuppressWarnings("unchecked")
 	public String execute(){

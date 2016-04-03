@@ -11,6 +11,7 @@
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="<%=path %>/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="<%=path %>/css/lightbox.css" />
   <!-- modernizr enables HTML5 elements and feature detects -->
   <script type="text/javascript" src="<%=path %>/js/modernizr-1.5.min.js"></script>
 </head>
@@ -60,8 +61,8 @@
 			scope="page"></jsp:useBean>
 			
 		<h2 align="center">未支付的预订单</h2>
-		<table id="approvedScheduleTable" style="width:100%; border-spacing:0;">
-		  <tr><th>编号</th><th>预订时间</th><th>店铺名称</th><th>折扣前价格</th><th>折扣率</th><th>使用积分</th><th>折扣后价格</th><th>查看</th></tr>
+		<table id="unpaidOrder" style="width:100%; border-spacing:0;">
+		  <tr><th>编号</th><th>下单时间</th><th>预订日期</th><th>店铺名称</th><th>折扣前价格</th><th>折扣率</th><th>使用积分</th><th>折扣后价格</th><th>查看</th><th>取消</th></tr>
 		  <%if(orderMade.getListBean()!=null){
 		      for(int i=0;i<orderMade.getListBean().size();i++){
 				pageContext.setAttribute("order", orderMade.getBean(i));
@@ -70,6 +71,7 @@
 		  <tr>
 		  	  <td><jsp:getProperty name="order" property="orderId" /></td>
 		  	  <td><jsp:getProperty name="order" property="orderTime" /></td>
+		  	  <td><jsp:getProperty name="order" property="targetDay" /></td>
 		  	  <td><jsp:getProperty name="store" property="storeName" /></td>
 		      <td><jsp:getProperty name="order" property="orderCost" /></td>
 		      <td><jsp:getProperty name="order" property="favorRate" /></td>
@@ -79,22 +81,32 @@
 		      	<input class="submit" type="button" name="checkOrder" value="查看"
 		      		onclick="checkRow('<jsp:getProperty name="order" property="orderId" />')" />
 		      </td>
+		      <td>
+		      	<input class="submit" type="button" name="checkOrder" value="取消"
+		      		onclick="cancelRow('<jsp:getProperty name="order" property="orderId" />')" />
+		      </td>
 		  </tr>
 		  <%  } 
 		    }%>
 		</table>
+		<p>
+		  <%if(request.getAttribute("cancelRes")!=null){ %>
+		  订单取消成功！
+		  <%} %>
+		</p>
 		
 		<h2 align="center">历史预订单</h2>
-		<table id="disapprovedScheduleTable" style="width:100%; border-spacing:0;">
-		  <tr><th>编号</th><th>店铺</th><th>生效时间</th><th>终止时间</th><th>状态</th><th>查看</th></tr>
+		<table id="paidOrder" style="width:100%; border-spacing:0;">
+		  <tr><th>编号</th><th>下单时间</th><th>预订日期</th><th>店铺名称</th><th>折扣前价格</th><th>折扣率</th><th>使用积分</th><th>折扣后价格</th><th>查看</th></tr>
 		  <%if(orderPaid.getListBean()!=null){
 		      for(int i=0;i<orderPaid.getListBean().size();i++){
-				pageContext.setAttribute("item", orderPaid.getBean(i));
+				pageContext.setAttribute("order", orderPaid.getBean(i));
 				pageContext.setAttribute("store", ((Order)orderPaid.getBean(i)).getOrderStore());
 				  %>
 		  <tr>
 		  	  <td><jsp:getProperty name="order" property="orderId" /></td>
 		  	  <td><jsp:getProperty name="order" property="orderTime" /></td>
+		  	  <td><jsp:getProperty name="order" property="targetDay" /></td>
 		  	  <td><jsp:getProperty name="store" property="storeName" /></td>
 		      <td><jsp:getProperty name="order" property="orderCost" /></td>
 		      <td><jsp:getProperty name="order" property="favorRate" /></td>
@@ -110,6 +122,20 @@
 		</table>	
 		
 	  </div>
+	  
+	  <div id="lightCancelOrder" class="cancel_content" >
+      	  <p></p>
+      	  <div align="center">
+      	    <p><input id="cancelOrderId" type="text" value="" width="30px" readonly="readonly"/></p>
+      	    <p>tip:取消订单会收取2%的补偿费用!</p>
+      	    <h2>您确认取消该条预订吗？</h2>
+      	  </div>
+      	  <div class="form_settings" style="margin-left:-30px;margin-top:20px">
+            <input class="submit" type="button" value="取消" onclick="cancelDeleteOrder()"/>
+            <input class="submit" type="button" value="确认退订" onclick="ensureDeleteOrder()"/>
+          </div>
+      </div>
+      
 	</div>
   </div>
   <!-- javascript at the bottom for fast page loading -->
@@ -128,6 +154,21 @@
   <script type="text/javascript">
     function checkRow(orderId){
     	
+    }
+    function cancelRow(orderId){
+    	document.getElementById("lightCancelOrder").style.display='block';
+		document.getElementById("cancelOrderId").value=orderId;
+    }
+    function cancelDeleteOrder(){
+		document.getElementById("cancelOrderId").value='';
+		document.getElementById("lightCancelOrder").style.display='none';
+    }
+    function ensureDeleteOrder(){
+    	var orderToCancel = document.getElementById("cancelOrderId").value;
+		document.getElementById("cancelOrderId").value='';
+		document.getElementById("lightCancelOrder").style.display='none';
+		window.location.href='<%=path%>/Dessert/ordercancel?orderToCancel='+orderToCancel;
+	
     }
   </script>
 </body>

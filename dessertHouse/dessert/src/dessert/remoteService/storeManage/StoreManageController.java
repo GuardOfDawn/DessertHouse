@@ -61,6 +61,15 @@ public class StoreManageController implements StoreManageService{
 			return null;
 		}
 	}
+	
+	public ArrayList<String> getAllStoreId(){
+		ArrayList<Store> storeList = getAllStore();
+		ArrayList<String> storeIdList = new ArrayList<String>();
+		for(Store s:storeList){
+			storeIdList.add(s.getStoreId());
+		}
+		return storeIdList;
+	}
 
 	public ArrayList<Store> retrieveStore(String province, String city) {
 		if(province!=null){

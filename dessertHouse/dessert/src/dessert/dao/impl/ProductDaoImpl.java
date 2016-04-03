@@ -53,8 +53,19 @@ public class ProductDaoImpl implements ProductDao {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Product findProduct(String productId){
-		return (Product) baseDao.load(Product.class, productId);
+		session = baseDao.getNewSession();
+		Query query = session.createQuery("select p from Product p where p.productId=?");
+		query.setString(0, productId);
+		List list = query.list();
+		session.close();
+		if(list!=null&&list.size()==1){
+			return (Product) list.get(0);
+		}
+		else{
+			return null;
+		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -89,6 +100,15 @@ public class ProductDaoImpl implements ProductDao {
 		List list = query.list();
 		session.close();
 		return (ArrayList<Product>) list;
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<String> findAllProductId(){
+		session = baseDao.getNewSession();
+		Query query = session.createQuery("select p.productId from Product p");
+		List list = query.list();
+		session.close();
+		return (ArrayList<String>) list;
 	}
 
 	public boolean updateProduct(Product product) {

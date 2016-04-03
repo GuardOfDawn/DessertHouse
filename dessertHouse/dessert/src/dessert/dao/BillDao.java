@@ -11,6 +11,12 @@ public interface BillDao {
 	public ArrayList<Bill> findBillForMember(String memberId);
 	
 	public ArrayList<Bill> findBillByDate(String storeId,Date date);
+
+	public ArrayList<Bill> findBillByStore(String storeId,Date startDate,Date endDate);
+	
+	public ArrayList<BillDetail> findBillDetailByStore(String storeId,Date startDate,Date endDate);
+
+	public ArrayList<BillDetail> findBillDetailAll(Date startDate,Date endDate);
 	
 	public boolean saveBill(Bill bill);
 

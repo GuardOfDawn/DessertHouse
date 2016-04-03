@@ -14,9 +14,9 @@ import dessert.models.ScheduleDetail;
 import dessert.models.Store;
 import dessert.models.StoreUser;
 import dessert.models.WeekSchedule;
+import dessert.remoteService.productManage.ProductManageService;
 import dessert.remoteService.salespersonManage.SalespersonManageService;
 import dessert.remoteService.scheduleManage.ScheduleManageService;
-import dessert.service.productOperation.ProductOpService;
 import dessert.utility.DayTransformer;
 
 @Controller
@@ -32,7 +32,7 @@ public class SaleAction extends BaseAction {
 	@Autowired
 	private ScheduleManageService scheduleManage;
 	@Autowired
-	private ProductOpService productManage;
+	private ProductManageService productManage;
 	
 	@SuppressWarnings("unchecked")
 	public String execute(){
@@ -42,24 +42,22 @@ public class SaleAction extends BaseAction {
 			Store store = salespersonManage.getSalespersonStore(salespersonId);
 			Date curDate = new Date(System.currentTimeMillis());
 			curDate = DayTransformer.transform(DayTransformer.transform(curDate));
-			ArrayList<WeekSchedule> scheduleList = scheduleManage.retrieveSchedule(store.getStoreId(), curDate, curDate);
+			WeekSchedule schedule = scheduleManage.retrieveSchedule(store.getStoreId(), curDate);
 			ArrayList<ProductExtend> sellingProductList = new ArrayList<ProductExtend>();
-			if(scheduleList!=null&&scheduleList.size()>0){
-				for(WeekSchedule schedule:scheduleList){
-					ArrayList<ScheduleDetail> temp = scheduleManage.retrieveScheduleDetail(schedule.getScheduleId());
-					for(ScheduleDetail item:temp){
-						Date d = item.getScheduleDate();
-						if(DayTransformer.transform(d).equals(DayTransformer.transform(curDate))){
-							Product p = productManage.getProductInfo(item.getProductId());
-							ProductExtend productItem = new ProductExtend();
-							productItem.setProductId(p.getProductId());
-							productItem.setProductName(p.getProductName());
-							productItem.setProductType(p.getProductType());
-							productItem.setImagePath(p.getImagePath());
-							productItem.setSellingPrice(item.getSellingPrice());
-							productItem.setSellingCount(item.getSellingCount());
-							sellingProductList.add(productItem);
-						}
+			if(schedule!=null){
+				ArrayList<ScheduleDetail> detailList = scheduleManage.retrieveScheduleDetail(schedule.getScheduleId());
+				for(ScheduleDetail item:detailList){
+					Date d = item.getScheduleDate();
+					if(DayTransformer.transform(d).equals(DayTransformer.transform(curDate))){
+						Product p = productManage.findProduct(item.getProductId());
+						ProductExtend productItem = new ProductExtend();
+						productItem.setProductId(p.getProductId());
+						productItem.setProductName(p.getProductName());
+						productItem.setProductType(p.getProductType());
+						productItem.setImagePath(p.getImagePath());
+						productItem.setSellingPrice(item.getSellingPrice());
+						productItem.setRemainingCount(item.getRemainingCount());
+						sellingProductList.add(productItem);
 					}
 				}
 			}

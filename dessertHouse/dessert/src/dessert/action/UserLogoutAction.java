@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import dessert.models.StoreUser;
-import dessert.service.userOperation.UserOpService;
+import dessert.remoteService.userManage.UserManageService;
 
 @Controller
 public class UserLogoutAction extends BaseAction{
@@ -17,7 +17,7 @@ public class UserLogoutAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private UserOpService userManage;
+	private UserManageService userManage;
 	
 	public String execute(){
 		if (null != session) {

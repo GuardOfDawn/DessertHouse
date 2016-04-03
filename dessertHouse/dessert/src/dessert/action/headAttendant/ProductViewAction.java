@@ -9,7 +9,7 @@ import dessert.action.BaseAction;
 import dessert.business.ListBean;
 import dessert.models.Product;
 import dessert.models.StoreUser;
-import dessert.service.productOperation.ProductOpService;
+import dessert.remoteService.productManage.ProductManageService;
 import dessert.utility.ProductType;
 
 @Controller
@@ -21,7 +21,7 @@ public class ProductViewAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private ProductOpService productManage;
+	private ProductManageService productManage;
 
 	@SuppressWarnings("unchecked")
 	public String execute(){

@@ -11,9 +11,9 @@ import dessert.models.Product;
 import dessert.models.Store;
 import dessert.models.StoreUser;
 import dessert.models.WeekSchedule;
+import dessert.remoteService.productManage.ProductManageService;
 import dessert.remoteService.scheduleManage.ScheduleManageService;
-import dessert.service.productOperation.ProductOpService;
-import dessert.service.storeOperation.StoreOpService;
+import dessert.remoteService.storeManage.StoreManageService;
 
 @Controller
 public class CurrentScheduleViewAction extends BaseAction{
@@ -24,9 +24,9 @@ public class CurrentScheduleViewAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	private ProductOpService productManage;
+	private ProductManageService productManage;
 	@Autowired
-	private StoreOpService storeManage;
+	private StoreManageService storeManage;
 	@Autowired
 	private ScheduleManageService scheduleManage;
 	

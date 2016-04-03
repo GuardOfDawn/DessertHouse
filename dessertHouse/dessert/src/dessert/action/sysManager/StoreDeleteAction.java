@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import dessert.action.BaseAction;
 import dessert.business.StoreListBean;
 import dessert.models.Store;
-import dessert.service.storeOperation.StoreOpService;
+import dessert.remoteService.storeManage.StoreManageService;
 
 @Controller
 public class StoreDeleteAction extends BaseAction{
@@ -19,7 +19,7 @@ public class StoreDeleteAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private StoreOpService storeManage;
+	private StoreManageService storeManage;
 	
 	@SuppressWarnings("unchecked")
 	public String execute(){
